@@ -51,176 +51,116 @@
 // 		// });
 // 	}
 // }
-//
-// const styles = StyleSheet.create({
-// 	container: {
-// 		flex: 1,
-// 		justifyContent: 'center',
-// 		alignItems: 'center',
-// 	},
-// 	input: {
-// 		padding: 4,
-// 		height: 40,
-// 		borderColor: 'gray',
-// 		borderWidth: 1,
-// 		borderRadius: 5,
-// 		margin: 5,
-// 		width: 200,
-// 		alignSelf: 'center'
-// 	},
-// 	label: {
-// 		fontSize: 18,
-// 	}
 // })
 'use strict'
 
 import React, {
-  Component,
-  StyleSheet,
-  Text,
-  TextInput,
-  View
+	Component,
+	StyleSheet,
+	Text,
+	Image,
+	View
 } from 'react-native';
-import _ from 'lodash';
 import FBLogin from 'react-native-facebook-login';
 var FBLoginManager = require('NativeModules').FBLoginManager;
+import FBImage from '../common/image/facebook';
 
-var FB_PHOTO_WIDTH = 200;
+class SignIn extends Component {
+	constructor(props) {
+		super(props);
+	};
+	render() {
+		return (
+			<View style={styles.loginContainer}>
+				{ this.props.user && <FBImage user={this.props.user} /> }
+				{ this.props.user && <Info user={this.props.user} /> }
 
-var SignIn = React.createClass({
-  getInitialState: function(){
-    return {
-      user: null,
-    };
-  },
+				<FBLogin style={{ marginBottom: 10, }}
+					permissions={["email","user_friends"]}
+					onLogin={(data) => {
+						console.log("Logged in!");
+						this.props.setUserCallback(data.credentials);
+					}}
+					onLogout={() => {
+						console.log("Logged out.");
+						this.props.setUserCallback(null);
+					}}
+					onLoginFound={(data) => {
+						console.log("Existing login found.");
+						this.props.setUserCallback(data.credentials);
+					}}
+					onLoginNotFound={() => {
+						console.log("No user logged in.");
+					}}
+					onError={(data) => {
+						console.log("ERROR");
+					}}
+					onCancel={() => {
+						console.log("User cancelled.");
+					}}
+					onPermissionsMissing={(data) => {
+						console.log("Check permissions!");
+					}}
+					/>
+			</View>
+		);
+	};
+};
 
-  render: function() {
-    var _this = this;
-    var user = this.state.user;
-	var testing = 'oogabooga';
 
-    return (
-		<View style={styles.loginContainer}>
-			{ user && <Photo user={user} /> }
-	        { user && <Info user={user} /> }
-			<Text>{testing}</Text>
-			<Text>{ user ? user.token : "N/A" }</Text>
-		</View>
-    );
-  }
-});
-
-var Photo = React.createClass({
-  propTypes: {
-    user: React.PropTypes.object.isRequired,
-  },
-
-  getInitialState: function(){
-    return {
-      photo: null,
-    };
-  },
-
-  componentWillMount: function(){
-    var _this = this;
-    var user = this.props.user;
-    var api = `https://graph.facebook.com/v2.3/${user.userId}/picture?width=${FB_PHOTO_WIDTH}&redirect=false&access_token=${user.token}`;
-
-    fetch(api)
-      .then((response) => response.json())
-      .then((responseData) => {
-        _this.setState({
-          photo : {
-            url : responseData.data.url,
-            height: responseData.data.height,
-            width: responseData.data.width,
-          },
-        });
-      })
-      .done();
-  },
-
-  render: function(){
-    if(this.state.photo == null) return this.renderLoading();
-
-    var photo = this.state.photo;
-
-    return (
-      <View style={styles.bottomBump}>
-
-        <Image
-          style={photo &&
-            {
-              height: photo.height,
-              width: photo.width,
-            }
-          }
-          source={{uri: photo && photo.url}}
-        />
-      </View>
-    );
-  },
-  renderLoading: function(){
-    return (
-      <View>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
-});
 
 var Info = React.createClass({
-  propTypes: {
-    user: React.PropTypes.object.isRequired,
-  },
+	propTypes: {
+		user: React.PropTypes.object.isRequired,
+	},
 
-  getInitialState: function(){
-    return {
-      info: null,
-    };
-  },
+	getInitialState: function(){
+		return {
+			info: null,
+		};
+	},
 
-  componentWillMount: function(){
-    var _this = this;
-    var user = this.props.user;
-    var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=name,email&access_token=${user.token}`;
+	componentWillMount: function(){
+	var _this = this;
+	var user = this.props.user;
+	var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=name,email&access_token=${user.token}`;
 
-    fetch(api)
-      .then((response) => response.json())
-      .then((responseData) => {
-        _this.setState({
-          info : {
-            name : responseData.name,
-            email: responseData.email,
-          },
-        });
-      })
-      .done();
-  },
+	fetch(api)
+	.then((response) => response.json())
+	.then((responseData) => {
+		_this.setState({
+			info : {
+				name : responseData.name,
+				email: responseData.email,
+			},
+		});
+	})
+.done();
+},
 
-  render: function(){
-    var info = this.state.info;
+	render: function(){
+		var info = this.state.info;
 
-    return (
-      <View style={styles.bottomBump}>
-        <Text>{ info && this.props.user.userId }</Text>
-        <Text>{ info && info.name }</Text>
-        <Text>{ info && info.email }</Text>
-      </View>
-    );
-  }
+		return (
+			<View style={styles.bottomBump}>
+			<Text>{ info && this.props.user.userId }</Text>
+			<Text>{ info && info.name }</Text>
+			<Text>{ info && info.email }</Text>
+			</View>
+		);
+	}
 });
 
 var styles = StyleSheet.create({
-  loginContainer: {
-    marginTop: 150,
+	loginContainer: {
+		marginTop: 150,
 
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  bottomBump: {
-    marginBottom: 15,
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	bottomBump: {
+		marginBottom: 15,
   },
 });
 

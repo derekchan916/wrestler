@@ -1,26 +1,34 @@
+'use strict'
+
 import React, {
   Component,
   Navigator,
   StyleSheet,
+  Text,
 } from 'react-native';
 import SignIn from './authentication/signin';
 import SignUp from './authentication/signup';
 import Home from './home/home';
 
 var ROUTES = {
-	signin  : SignIn,
-	signup  : SignUp,
-	home    : Home
+	SignIn  : SignIn,
+	Home    : Home
 }
 
 class MainClass extends Component {
-	// componentWillMount() {
-	//
-	// }
+	constructor() {
+		super();
+		this.state = {
+			user: null
+		};
+	};
+	setUserCallback(data) {
+		this.setState({user:data})
+	};
 	render() {
 		return (
 			<Navigator
-				initialRoute={{name: 'signin'}}
+				initialRoute={{name: 'SignIn'}}
 				renderScene={(route, navigator) => this.renderScene(route, navigator)}
 				configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
 				style={styles.container}
@@ -29,7 +37,11 @@ class MainClass extends Component {
 	}
 	renderScene(route, navigator) {
 		var Component = ROUTES[route.name];
-		return <Component route={route} navigator={navigator}/>;
+		return <Component
+					route={route}
+					navigator={navigator}
+					user={this.state.user}
+					setUserCallback={(data) => this.setUserCallback(data)}/>;
 	}
 }
 

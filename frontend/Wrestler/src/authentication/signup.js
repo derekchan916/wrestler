@@ -7,7 +7,6 @@ import React, {
 	TextInput,
 	View
 } from 'react-native';
-import Button from '../common/button';
 
 class SignUp extends Component {
 	constructor(props) {
