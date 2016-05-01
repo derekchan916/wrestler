@@ -58,7 +58,6 @@ import React, {
 	Component,
 	StyleSheet,
 	Text,
-	Image,
 	View
 } from 'react-native';
 import FBLogin from 'react-native-facebook-login';
@@ -73,7 +72,6 @@ class SignIn extends Component {
 		return (
 			<View style={styles.loginContainer}>
 				{ this.props.user && <FBImage user={this.props.user} /> }
-				{ this.props.user && <Info user={this.props.user} /> }
 
 				<FBLogin style={{ marginBottom: 10, }}
 					permissions={["email","user_friends"]}
@@ -107,50 +105,6 @@ class SignIn extends Component {
 	};
 };
 
-
-
-var Info = React.createClass({
-	propTypes: {
-		user: React.PropTypes.object.isRequired,
-	},
-
-	getInitialState: function(){
-		return {
-			info: null,
-		};
-	},
-
-	componentWillMount: function(){
-	var _this = this;
-	var user = this.props.user;
-	var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=name,email&access_token=${user.token}`;
-
-	fetch(api)
-	.then((response) => response.json())
-	.then((responseData) => {
-		_this.setState({
-			info : {
-				name : responseData.name,
-				email: responseData.email,
-			},
-		});
-	})
-.done();
-},
-
-	render: function(){
-		var info = this.state.info;
-
-		return (
-			<View style={styles.bottomBump}>
-			<Text>{ info && this.props.user.userId }</Text>
-			<Text>{ info && info.name }</Text>
-			<Text>{ info && info.email }</Text>
-			</View>
-		);
-	}
-});
-
 var styles = StyleSheet.create({
 	loginContainer: {
 		marginTop: 150,
@@ -159,9 +113,6 @@ var styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	bottomBump: {
-		marginBottom: 15,
-  },
 });
 
 module.exports = SignIn;

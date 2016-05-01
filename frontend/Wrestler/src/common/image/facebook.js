@@ -3,8 +3,8 @@
 import React, {
 	Component,
 	StyleSheet,
-	Text,
 	Image,
+	Text,
 	View
 } from 'react-native';
 
@@ -13,20 +13,19 @@ var FB_PHOTO_WIDTH = 200;
 class FBImage extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			photo: null
+		}
 	};
 	propTypes: {
 		user: React.PropTypes.object.isRequired,
 	};
-	getInitialState() {
-		return {
-			photo: null,
-		};
-	};
 	componentWillMount() {
 		var _this = this;
 		var user = this.props.user;
-		console.log('in Photo', user)
 		var api = `https://graph.facebook.com/v2.3/${user.userId}/picture?width=${FB_PHOTO_WIDTH}&redirect=false&access_token=${user.token}`;
+		//For user information
+		// var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=name,email&access_token=${user.token}`;
 
 		fetch(api)
 		.then((response) => response.json())
@@ -60,6 +59,7 @@ class FBImage extends Component {
 				/>
 			</View>
 		);
+
 	};
 	renderLoading() {
 		return (
@@ -69,5 +69,11 @@ class FBImage extends Component {
 		);
 	};
 };
+
+var styles = StyleSheet.create({
+	bottomBump: {
+		marginBottom: 15,
+  },
+});
 
 module.exports = FBImage;

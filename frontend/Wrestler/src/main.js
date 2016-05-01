@@ -4,7 +4,6 @@ import React, {
   Component,
   Navigator,
   StyleSheet,
-  Text,
 } from 'react-native';
 import SignIn from './authentication/signin';
 import SignUp from './authentication/signup';
