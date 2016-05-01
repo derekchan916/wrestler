@@ -1,3 +1,5 @@
+'use strict'
+
 import React, {
 	Component,
 	StyleSheet,
@@ -43,7 +45,7 @@ class SignUp extends Component {
 					onChangeText={(text) => this.setState({passwordConfirmation: text})}
 					style={styles.input}
 					/>
-				
+
 				<Text style={styles.label}>{this.state.errorMessage}</Text>
 				<Button text={'Signup'} onPress={() => this.onSignUpPress()} />
 				<Button text={'I have an account...'} onPress={() => this.onSignInPress()} />

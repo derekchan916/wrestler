@@ -72,6 +72,7 @@
 // 		fontSize: 18,
 // 	}
 // })
+'use strict'
 
 import React, {
   Component,
@@ -80,9 +81,9 @@ import React, {
   TextInput,
   View
 } from 'react-native';
-var _ = require('lodash');
-// import FBLogin from 'react-native-facebook-login';
-// var FBLoginManager = require('NativeModules').FBLoginManager;
+import _ from 'lodash';
+import FBLogin from 'react-native-facebook-login';
+var FBLoginManager = require('NativeModules').FBLoginManager;
 
 var FB_PHOTO_WIDTH = 200;
 
