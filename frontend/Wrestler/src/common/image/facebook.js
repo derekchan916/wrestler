@@ -42,12 +42,10 @@ class FBImage extends Component {
 	};
 	render() {
 		if(this.state.photo == null) return this.renderLoading();
-
 		var photo = this.state.photo;
 
 		return (
 			<View style={styles.bottomBump}>
-
 			<Image
 				style={photo &&
 					{

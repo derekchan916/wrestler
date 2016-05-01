@@ -5,6 +5,7 @@ import React, {
   View
 } from 'react-native';
 import FBImage from '../common/image/facebook';
+import FBLogin from 'react-native-facebook-login';
 
 class Home extends Component {
 	constructor(props) {
