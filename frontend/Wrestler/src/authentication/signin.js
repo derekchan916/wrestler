@@ -1,57 +1,3 @@
-// import React, {
-//   Component,
-//   StyleSheet,
-//   Text,
-//   TextInput,
-//   View
-// } from 'react-native';
-// import Button from '../common/button';
-//
-// class SignIn extends Component {
-// 	constructor(props) {
-// 		super(props)
-// 		this.state = {
-// 			username: '',
-// 			password: '',
-// 		};
-// 	}
-//
-// 	render() {
-// 		return (
-// 			<View style={styles.container}>
-// 				<Text>Sign In</Text>
-// 				<Text style={styles.label}>Username:</Text>
-// 				<TextInput
-// 					value={this.state.username}
-// 					onChangeText={(text) => this.setState({username: text})}
-// 					style={styles.input}/>
-//
-// 				<Text style={styles.label}>Password:</Text>
-// 				<TextInput
-// 					value={this.state.pasword}
-// 					onChangeText={(text) => this.setState({password: text})}
-// 					secureTextEntry = {true}
-// 					style={styles.input}/>
-//
-// 				<Button text={'Sign In'} onPress={() => this.onPress()}/>
-// 				<Button text={'I need an account...'} onPress={() => this.onSignUpPress()}/>
-// 			</View>
-// 		);
-// 	}
-//
-// 	onSignUpPress() {
-// 		this.props.navigator.push({name: 'signup'});
-// 	}
-//
-// 	onPress() {
-// 		this.props.navigator.immediatelyResetRouteStack([{ name: 'home'}]);
-// 		// Parse.User.logIn(this.state.username, this.state.password, {
-// 		// 	success: (user) => {this.setState({username: user.username, password: user.password})},
-// 		// 	error: (data, error) => {console.log(data, error);}
-// 		// });
-// 	}
-// }
-// })
 'use strict'
 
 import React, {
@@ -62,7 +8,6 @@ import React, {
 } from 'react-native';
 import FBLogin from 'react-native-facebook-login';
 var FBLoginManager = require('NativeModules').FBLoginManager;
-import FBImage from '../common/image/facebook';
 
 class SignIn extends Component {
 	constructor(props) {
@@ -71,13 +16,12 @@ class SignIn extends Component {
 	render() {
 		return (
 			<View style={styles.loginContainer}>
-				{ this.props.user && <FBImage user={this.props.user} /> }
-
 				<FBLogin style={{ marginBottom: 10, }}
 					permissions={["email","user_friends"]}
 					onLogin={(data) => {
 						console.log("Logged in!");
 						this.props.setUserCallback(data.credentials);
+						this.props.navigator.immediatelyResetRouteStack([{ name: 'Home'}]);
 					}}
 					onLogout={() => {
 						console.log("Logged out.");
@@ -86,6 +30,7 @@ class SignIn extends Component {
 					onLoginFound={(data) => {
 						console.log("Existing login found.");
 						this.props.setUserCallback(data.credentials);
+						this.props.navigator.immediatelyResetRouteStack([{ name: 'Home'}]);
 					}}
 					onLoginNotFound={() => {
 						console.log("No user logged in.");

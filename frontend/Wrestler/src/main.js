@@ -6,7 +6,6 @@ import React, {
   StyleSheet,
 } from 'react-native';
 import SignIn from './authentication/signin';
-import SignUp from './authentication/signup';
 import Home from './home/home';
 
 var ROUTES = {
