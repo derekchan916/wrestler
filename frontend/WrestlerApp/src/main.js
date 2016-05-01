@@ -14,9 +14,9 @@ var ROUTES = {
 }
 
 class MainClass extends Component {
-	componentWillMount() {
-
-	}
+	// componentWillMount() {
+	//
+	// }
 	render() {
 		return (
 			<Navigator
