@@ -8,6 +8,6 @@
 import React, {
 	AppRegistry
 } from 'react-native';
-import Main from './src/main';
+import Main from './components/main';
 
 AppRegistry.registerComponent('Wrestler', () => Main);

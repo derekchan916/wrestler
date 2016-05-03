@@ -24,9 +24,6 @@ class FBImage extends Component {
 		var _this = this;
 		var user = this.props.user;
 		var api = `https://graph.facebook.com/v2.3/${user.userId}/picture?width=${FB_PHOTO_WIDTH}&redirect=false&access_token=${user.token}`;
-		//For user information
-		// var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=name,email&access_token=${user.token}`;
-		// var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=first_name,last_name,email&access_token=${user.token}`;
 
 		fetch(api)
 		.then((response) => response.json())
@@ -63,7 +60,7 @@ class FBImage extends Component {
 	renderLoading() {
 		return (
 			<View>
-			<Text>Loading...</Text>
+				<Text>Loading...</Text>
 			</View>
 		);
 	};
