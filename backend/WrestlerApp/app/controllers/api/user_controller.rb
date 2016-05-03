@@ -1,20 +1,22 @@
 class Api::UserController < ApplicationController
 	def index
 		@user = User.all
+		render "api/user/index"
 	end
 
 	def show
 		@user = User.find(params[:id])
+		render "api/user/show"
 	end
 
 	def create
 		@user = User.new(user_params)
 
 		if @user.save
-			render :show
+			render "api/user/show"
 		else
-			print @user.errors.full_messages
-			render json: @user.errors.full_messages, status: 422
+			@errors = @user.errors.full_messages
+			render "api/shared/error", status: 422
 		end
 	end
 
@@ -27,6 +29,6 @@ class Api::UserController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:fname, :lname :fb_id, :images, :email)
+		params.require(:user).permit(:fname, :lname, :fb_id, :images, :email)
 	end
 end
