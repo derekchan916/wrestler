@@ -29,6 +29,7 @@ class SignIn extends Component {
 					}}
 					onLoginFound={(data) => {
 						console.log("Existing login found.");
+						console.log('data in here', data);
 						this.props.setUserCallback(data.credentials);
 						this.props.navigator.immediatelyResetRouteStack([{ name: 'Home'}]);
 					}}
