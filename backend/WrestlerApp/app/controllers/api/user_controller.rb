@@ -13,6 +13,7 @@ class Api::UserController < ApplicationController
 		if @user.save
 			render :show
 		else
+			print @user.errors.full_messages
 			render json: @user.errors.full_messages, status: 422
 		end
 	end
@@ -26,6 +27,6 @@ class Api::UserController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:name, :facebook_id, :images, :email)
+		params.require(:user).permit(:fname, :lname :fb_id, :images, :email)
 	end
 end

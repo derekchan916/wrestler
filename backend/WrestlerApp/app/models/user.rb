@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
-	validates :name, :facebook_id, :images, presence: true
-	validates :facebook_id, uniqueness: true
+	validates :fname, :fb_id, presence: true
+	validates :fb_id, uniqueness: true
 end
