@@ -47,13 +47,13 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   React:
-    :path: "../node_modules/react-native"
+    :path: ../node_modules/react-native
   react-native-fbsdkcore:
-    :path: "../node_modules/react-native-fbsdk/iOS/core"
+    :path: ../node_modules/react-native-fbsdk/iOS/core
   react-native-fbsdklogin:
-    :path: "../node_modules/react-native-fbsdk/iOS/login"
+    :path: ../node_modules/react-native-fbsdk/iOS/login
   react-native-fbsdkshare:
-    :path: "../node_modules/react-native-fbsdk/iOS/share"
+    :path: ../node_modules/react-native-fbsdk/iOS/share
 
 SPEC CHECKSUMS:
   Bolts: a0058fa3b331c5a1e4402d534f2dae36dbff31e4
