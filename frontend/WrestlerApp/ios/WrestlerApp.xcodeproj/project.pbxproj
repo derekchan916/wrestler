@@ -14,9 +14,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		670B92ED1CD6569C88DCE592 /* libPods-WrestlerApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6057598B39C4622EB1ADCBE /* libPods-WrestlerApp.a */; };
 		7EA2EC34440764BCA371BC30 /* libPods-WrestlerAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D881EBE0E49618316C4503F /* libPods-WrestlerAppTests.a */; };
-		AD2A07451CD9A1DC000BE67A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2A07441CD9A1DC000BE67A /* FBSDKCoreKit.framework */; };
-		AD2A07471CD9A8F0000BE67A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2A07461CD9A8F0000BE67A /* FBSDKLoginKit.framework */; };
-		AD2A07491CD9A907000BE67A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2A07481CD9A907000BE67A /* FBSDKShareKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,9 +43,6 @@
 		1D881EBE0E49618316C4503F /* libPods-WrestlerAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WrestlerAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		679365E11FFADFC020DDFD27 /* Pods-WrestlerAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WrestlerAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WrestlerAppTests/Pods-WrestlerAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		76BDFA568633B92AE9C4254B /* Pods-WrestlerAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WrestlerAppTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WrestlerAppTests/Pods-WrestlerAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AD2A07441CD9A1DC000BE67A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../../../Documents/Facebook-SDK/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
-		AD2A07461CD9A8F0000BE67A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../../../Documents/Facebook-SDK/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
-		AD2A07481CD9A907000BE67A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../../../Documents/Facebook-SDK/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		C6057598B39C4622EB1ADCBE /* libPods-WrestlerApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WrestlerApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -65,10 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD2A07491CD9A907000BE67A /* FBSDKShareKit.framework in Frameworks */,
 				670B92ED1CD6569C88DCE592 /* libPods-WrestlerApp.a in Frameworks */,
-				AD2A07451CD9A1DC000BE67A /* FBSDKCoreKit.framework in Frameworks */,
-				AD2A07471CD9A8F0000BE67A /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,9 +111,6 @@
 		7B620CDDB4A46B27181F9D2C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AD2A07481CD9A907000BE67A /* FBSDKShareKit.framework */,
-				AD2A07461CD9A8F0000BE67A /* FBSDKLoginKit.framework */,
-				AD2A07441CD9A1DC000BE67A /* FBSDKCoreKit.framework */,
 				C6057598B39C4622EB1ADCBE /* libPods-WrestlerApp.a */,
 				1D881EBE0E49618316C4503F /* libPods-WrestlerAppTests.a */,
 			);
@@ -458,6 +446,7 @@
 				);
 				INFOPLIST_FILE = WrestlerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -479,6 +468,7 @@
 				);
 				INFOPLIST_FILE = WrestlerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
