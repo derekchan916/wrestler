@@ -39,14 +39,14 @@ class SignIn extends Component {
 	getAccessToken() {
 		AccessToken.getCurrentAccessToken()
 		.then((token) => {
-			this.getUserFbInfo(token.userId, token.accessToken);
+			this.getUserFbInfo(token.userID, token.accessToken);
 		});
 	};
-	getUserFbInfo(userId, token) {
-		AuthApi.getUserFbInfo(userId, token)
+	getUserFbInfo(userID, token) {
+		AuthApi.getUserFbInfo(userID, token)
 		.then((data) => {
-			console.log(data);
-		})
+			console.log('Still working baby', data)
+		});
 	}
 
 	// addNewUser(data) {
@@ -54,30 +54,6 @@ class SignIn extends Component {
 	// 	// 	this.props.setUserCallback(data);
 	// 	// 	this.props.navigator.immediatelyResetRouteStack([{ name: 'Home'}]);
 	// 	// }
-	// }
-	// getUserFbInfo(data) {
-	// 	var fbApi = 'https://graph.facebook.com/v2.3/';
-	// 	var string = `${fbApi}${data.userId}?fields=first_name,last_name,email&access_token=${data.token}`
-	// 	console.log(string);
-	// 	fetch(`${fbApi}${data.userId}?fields=first_name,last_name,email&access_token=${data.token}`)
-	// 	.then((response) => response.json())
-	// 	.then((data) => {
-	// 		console.log(data);
-	// 		return {
-	// 			fname: data.fname,
-	// 			lname: data.lname,
-	// 			email: data.email
-	// 		}
-	// 	})
-	// 	.catch((error) => {
-	// 		console.warn('THERE WAS AN ERROR', error);
-	// 	})
-	// 	.done();
-	// 	// Api.getUserFbInfo(data.userId, data.token)
-	// 	// .then((data) => {
-	// 	// 	console.log(data)
-	// 	// 	// this.props.setUserCallback(data);
-	// 	// });
 	// }
 };
 
