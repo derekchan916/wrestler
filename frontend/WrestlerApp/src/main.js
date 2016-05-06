@@ -32,10 +32,11 @@ class MainClass extends Component {
 	//Try to do -> if there is a user, the initial route is home screen.
 
 	render() {
+		var initialRoute = this.state.user ? 'Welcome' : 'SignIn';
 
 		return (
 			<Navigator
-				initialRoute={{name: 'SignIn'}}
+				initialRoute={{name: initialRoute}}
 				renderScene={(route, navigator) => this.renderScene(route, navigator)}
 				configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
 				style={styles.container}

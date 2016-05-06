@@ -49,14 +49,13 @@ function parseResponse (response) {
 class BaseApi {
 	static fetch ({url, query, method, headers, body}) {
 		var qs = query ? `?${formatQuery(generateQuery(query))}` : '';
-		console.log('the query string is', qs);
 		var data = generateData({
 			method,
 			headers,
 			body,
 		});
 		url = `${url}${qs}`;
-		console.log('the data is', url, data);
+		
 		return request(url, data)
 			.then(parseResponse);
 	};

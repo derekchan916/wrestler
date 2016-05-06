@@ -55,7 +55,7 @@ class SignIn extends Component {
 	getUserData(data) {
 		AuthApi.getUserData(data)
 			.then((data) => {
-				this.props.setUserCallback(data);
+				this.props.setUserCb(data);
 				data.new_user ? this.goToWelcomeScreen() : this.goToHomeScreen()
 			})
 	};

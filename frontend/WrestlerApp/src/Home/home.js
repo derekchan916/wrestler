@@ -4,7 +4,6 @@ import React, {
 	Text,
 	View
 } from 'react-native';
-import FBImage from '../Base/Components/FbImage';
 
 class Home extends Component {
 	constructor(props) {
@@ -13,7 +12,7 @@ class Home extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				{ this.props.user && <FBImage user={this.props.user} /> }
+				<Text>WELCOME TO THE HOME SCREEN</Text>
 			</View>
 		);
 	};
