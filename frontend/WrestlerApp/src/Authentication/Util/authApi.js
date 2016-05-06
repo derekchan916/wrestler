@@ -2,7 +2,7 @@
 
 import BaseApi from '../../Base/Util/BaseApi';
 
-var localApi = 'localhost:3000/api/';
+var localApi = 'localhost:3000/api';
 var fbApiUrl = 'https://graph.facebook.com/v2.3';
 // var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=first_name,last_name,email&access_token=${user.token}`;
 // var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=name,email&access_token=${user.token}`;
@@ -22,28 +22,47 @@ class AuthApi {
 			})
 		})
 	};
+
 	static getUserFbInfo(fbId, token) {
 		var params = 'first_name,last_name,email';
 		return BaseApi.fetch({
-				url: `${fbApiUrl}/${fbId}`,
-				method: 'GET',
-				query: {
-					fields: params,
-					access_token: token
-				},
-			})
-			.then((data) => {
-				return {
-					fname: data.first_name,
-					lname: data.last_name,
-					email: data.email,
-					fbId: data.id,
-				}
-			})
-			.catch((error) => {
-				return error
-			})
+			url: `${fbApiUrl}/${fbId}`,
+			method: 'GET',
+			query: {
+				fields: params,
+				access_token: token
+			},
+		})
+		.then(data => data)
+		.catch((error) => {
+			console.log('authApi', error)
+		})
 	};
+
+	static getUserData(data) {
+		var apiEndpoint = 'user';
+		var body = {
+			user: {
+				fname: data.first_name,
+				lname: data.last_name,
+				email: data.email,
+				fb_id: data.id,
+			}
+		};
+
+		return BaseApi.fetch({
+			url: `${localApi}/${apiEndpoint}`,
+			method: 'POST',
+			body: body,
+		})
+		.then((data) => {
+			console.log('what the data was', data)
+			return data
+		})
+		.catch((error) => {
+			console.log('authApi', error)
+		})
+	}
 };
 
 export default AuthApi;

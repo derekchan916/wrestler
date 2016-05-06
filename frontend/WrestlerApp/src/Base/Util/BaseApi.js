@@ -10,6 +10,12 @@ function formatQuery (obj) {
 		.join('&')
 };
 
+function generateQuery (query) {
+	return {
+		...(query || {})
+	};
+};
+
 function generateData ({method, headers, body, generator}) {
 	var authToken = generator && generator();
 	var data = {
@@ -22,9 +28,11 @@ function generateData ({method, headers, body, generator}) {
 		}
 	};
 
-	if (body) {
-		data.body = JSON.stringify(body);
-	}
+	data.body = body;
+
+	// if (body) {
+	// 	data.body = JSON.stringify(body);
+	// }
 
 	return data;
 };
@@ -42,14 +50,15 @@ function parseResponse (response) {
 
 class BaseApi {
 	static fetch ({url, query, method, headers, body}) {
-		var qs = formatQuery(query);
+		var qs = formatQuery(generateQuery(query));
+		console.log('the query string is', qs);
 		var data = generateData({
 			method,
 			headers,
 			body,
 		});
 		url = `${url}?${qs}`;
-		console.log(url)
+		console.log('the data is', data);
 		return request(url, data)
 			.then(parseResponse);
 	};

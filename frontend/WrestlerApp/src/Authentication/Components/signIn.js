@@ -53,7 +53,10 @@ class SignIn extends Component {
 	};
 
 	getUserData(data) {
-		
+		AuthApi.getUserData(data)
+			.then((data) => {
+				console.log('SUCCESSFUL SIGNING BABY', data)
+			})
 	};
 
 	// addNewUser(data) {
