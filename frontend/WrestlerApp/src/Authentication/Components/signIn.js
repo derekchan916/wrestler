@@ -6,7 +6,7 @@ import React, {
 	Text,
 	View
 } from 'react-native';
-import AuthApi from '../Util/authApi';
+import AuthApi from '../Util/AuthApi';
 const FBSDK = require('react-native-fbsdk');
 const {
 	AccessToken,
@@ -18,6 +18,7 @@ class SignIn extends Component {
 	constructor(props) {
 		super(props);
 	};
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -36,18 +37,24 @@ class SignIn extends Component {
 			</View>
 		);
 	};
+
 	getAccessToken() {
 		AccessToken.getCurrentAccessToken()
-		.then((token) => {
-			this.getUserFbInfo(token.userID, token.accessToken);
-		});
+			.then((token) => {
+				this.getUserFbInfo(token.userID, token.accessToken);
+			});
 	};
+
 	getUserFbInfo(userID, token) {
 		AuthApi.getUserFbInfo(userID, token)
-		.then((data) => {
-			console.log('Still working baby', data)
-		});
-	}
+			.then((data) => {
+				this.getUserData(data);
+			});
+	};
+
+	getUserData(data) {
+		
+	};
 
 	// addNewUser(data) {
 	// 	// Api.addNewUser(data){

@@ -5,8 +5,8 @@ import React, {
 	Navigator,
 	StyleSheet,
 } from 'react-native';
-import SignIn from './Authentication/Components/signIn';
-import Home from './Home/home';
+import SignIn from './Authentication/Components/SignIn';
+import Home from './Home/Home';
 
 var ROUTES = {
 	SignIn  : SignIn,
@@ -20,11 +20,13 @@ class MainClass extends Component {
 			user: null
 		};
 	};
+
 	setUserCb(data) {
 		this.setState({
 		 	user: data
 		})
 	};
+
 	render() {
 		return (
 			<Navigator
@@ -35,6 +37,7 @@ class MainClass extends Component {
 				/>
 		);
 	};
+
 	renderScene(route, navigator) {
 		var Component = ROUTES[route.name];
 		return (
@@ -52,7 +55,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
-
 })
 
 module.exports = MainClass;

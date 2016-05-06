@@ -4,7 +4,7 @@ import React, {
 	Text,
 	View
 } from 'react-native';
-import FBImage from '../Base/Components/fbImage';
+import FBImage from '../Base/Components/FbImage';
 
 class Home extends Component {
 	constructor(props) {
