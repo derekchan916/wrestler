@@ -1,3 +1,5 @@
+require 'byebug'
+
 class Api::UserController < ApplicationController
 	def index
 		@user = User.all
@@ -10,19 +12,16 @@ class Api::UserController < ApplicationController
 	end
 
 	def create
-		@user = User.find(params[:id])
-		if @user
-			render "api/user/show"
-		else
+		@user = User.find_by(fb_id: user_params[:fb_id])
+		unless @user
 			@user = User.new(user_params)
-
-			if @user.save
-				render "api/user/show"
-			else
+			unless @user.save
 				@errors = @user.errors.full_messages
 				render "api/shared/error", status: 422
+				return
 			end
 		end
+		render "api/user/show"
 	end
 
 	def update
