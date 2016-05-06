@@ -10,13 +10,18 @@ class Api::UserController < ApplicationController
 	end
 
 	def create
-		@user = User.new(user_params)
-
-		if @user.save
+		@user = User.find(params[:id])
+		if @user
 			render "api/user/show"
 		else
-			@errors = @user.errors.full_messages
-			render "api/shared/error", status: 422
+			@user = User.new(user_params)
+
+			if @user.save
+				render "api/user/show"
+			else
+				@errors = @user.errors.full_messages
+				render "api/shared/error", status: 422
+			end
 		end
 	end
 
