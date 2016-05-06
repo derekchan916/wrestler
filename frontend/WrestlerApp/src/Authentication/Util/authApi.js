@@ -2,7 +2,7 @@
 
 import BaseApi from '../../Base/Util/BaseApi';
 
-var localApi = 'localhost:3000/api';
+var localApi = 'http://localhost:3000/api';
 var fbApiUrl = 'https://graph.facebook.com/v2.3';
 // var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=first_name,last_name,email&access_token=${user.token}`;
 // var api = `https://graph.facebook.com/v2.3/${user.userId}?fields=name,email&access_token=${user.token}`;
@@ -35,7 +35,7 @@ class AuthApi {
 		})
 		.then(data => data)
 		.catch((error) => {
-			console.log('authApi', error)
+			console.warn('authApi', error)
 		})
 	};
 
@@ -56,11 +56,10 @@ class AuthApi {
 			body: body,
 		})
 		.then((data) => {
-			console.log('what the data was', data)
 			return data
 		})
 		.catch((error) => {
-			console.log('authApi', error)
+			console.warn('authApi', error)
 		})
 	}
 };

@@ -6,10 +6,12 @@ import React, {
 	StyleSheet,
 } from 'react-native';
 import SignIn from './Authentication/Components/SignIn';
+import Welcome from './Authentication/Components/Welcome';
 import Home from './Home/Home';
 
 var ROUTES = {
 	SignIn  : SignIn,
+	Welcome : Welcome,
 	Home    : Home
 }
 
@@ -26,8 +28,11 @@ class MainClass extends Component {
 		 	user: data
 		})
 	};
+	// if (this.state.user) {return this.goToHomeScreen()}
+	//Try to do -> if there is a user, the initial route is home screen.
 
 	render() {
+
 		return (
 			<Navigator
 				initialRoute={{name: 'SignIn'}}

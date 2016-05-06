@@ -55,16 +55,18 @@ class SignIn extends Component {
 	getUserData(data) {
 		AuthApi.getUserData(data)
 			.then((data) => {
-				console.log('SUCCESSFUL SIGNING BABY', data)
+				this.props.setUserCallback(data);
+				data.new_user ? this.goToWelcomeScreen() : this.goToHomeScreen()
 			})
 	};
 
-	// addNewUser(data) {
-	// 	// Api.addNewUser(data){
-	// 	// 	this.props.setUserCallback(data);
-	// 	// 	this.props.navigator.immediatelyResetRouteStack([{ name: 'Home'}]);
-	// 	// }
-	// }
+	goToHomeScreen() {
+		this.props.navigator.immediatelyResetRouteStack([{ name: 'Home'}]);
+	};
+
+	goToWelcomeScreen() {
+		this.props.navigator.push({name: 'Welcome'});
+	};
 };
 
 const styles = StyleSheet.create({
