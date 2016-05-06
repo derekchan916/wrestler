@@ -20,6 +20,7 @@ class Api::UserController < ApplicationController
 				render "api/shared/error", status: 422
 				return
 			end
+			@new_user = true
 		end
 		render "api/user/show"
 	end
