@@ -7,6 +7,7 @@ import React, {
 	View
 } from 'react-native';
 import AuthApi from '../Util/AuthApi';
+import LoadingModal from '../../Base/Components/LoadingModal';
 const FBSDK = require('react-native-fbsdk');
 const {
 	AccessToken,
@@ -17,9 +18,14 @@ const {
 class SignIn extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			loading: true
+		};
 	};
 
 	render() {
+		if (this.state.loading) { return <LoadingModal /> }
+
 		return (
 			<View style={styles.container}>
 				<LoginButton

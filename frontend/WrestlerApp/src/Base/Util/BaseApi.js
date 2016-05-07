@@ -55,7 +55,7 @@ class BaseApi {
 			body,
 		});
 		url = `${url}${qs}`;
-		
+
 		return request(url, data)
 			.then(parseResponse);
 	};
