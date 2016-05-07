@@ -27,19 +27,21 @@ class SignIn extends Component {
 		return (
 			<View style={styles.container}>
 				<LoadingModal visible={this.state.loading}/>
-				<LoginButton
-					readPermissions={["user_friends"]}
-					onLoginFinished={(error, result) => {
-						if (error) {
-							alert("login has error: " + result.error);
-						} else if (result.isCancelled) {
-							alert("login is cancelled.");
-						} else {
-							this.toggleLoading();
-							this.getAccessToken();
-						}
-					}}
-					/>
+				<View style={styles.fbContainer}>
+					<LoginButton
+						readPermissions={["user_friends"]}
+						onLoginFinished={(error, result) => {
+							if (error) {
+								alert("login has error: " + result.error);
+							} else if (result.isCancelled) {
+								alert("login is cancelled.");
+							} else {
+								this.toggleLoading();
+								this.getAccessToken();
+							}
+						}}
+						/>
+				</View>
 			</View>
 		);
 	};
@@ -85,7 +87,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
+	},
+	fbContainer: {
+		marginTop: 300,
+		flex: 1,
+	    alignItems: 'center',
+	    justifyContent: 'center',
 	},
 });
 

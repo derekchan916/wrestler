@@ -23,14 +23,6 @@ class MainClass extends Component {
 		};
 	};
 
-	setUserCb(data) {
-		this.setState({
-		 	user: data
-		})
-	};
-	// if (this.state.user) {return this.goToHomeScreen()}
-	//Try to do -> if there is a user, the initial route is home screen.
-
 	render() {
 		var initialRoute = this.state.user ? 'Welcome' : 'SignIn';
 
@@ -54,6 +46,12 @@ class MainClass extends Component {
 				setUserCb={(data) => this.setUserCb(data)}
 				/>
 		);
+	};
+
+	setUserCb(data) {
+		this.setState({
+		 	user: data
+		})
 	};
 }
 

@@ -33,3 +33,17 @@ If build fails, gg your life too bad.
 
 ## Working with Facebook SDK
 Refer to [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk)
+
+## Saving data like cookies
+```JavaScript
+componentDidMount: function() {
+    AsyncStorage.getItem("myKey").then((value) => {
+        this.setState({"myKey": value});
+    }).done();
+},
+
+saveData: function(value) {
+	AsyncStorage.setItem("myKey", value);
+	this.setState({"myKey": value});
+}
+```
