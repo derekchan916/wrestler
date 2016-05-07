@@ -10,12 +10,16 @@ import React, {
 } from 'react-native';
 
 class LoadingModal extends Component {
+	constructor(props) {
+		super(props)
+	};
+
 	render() {
 		return (
 			<View>
 				<Modal
 					transparent={true}
-					visible={true}
+					visible={this.props.visible}
 					>
 					<View style={styles.container}>
 						<View style={styles.innerContainer}>

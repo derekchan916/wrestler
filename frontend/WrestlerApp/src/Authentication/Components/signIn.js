@@ -19,15 +19,14 @@ class SignIn extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			loading: true
+			loading: false
 		};
 	};
 
 	render() {
-		if (this.state.loading) { return <LoadingModal /> }
-
 		return (
 			<View style={styles.container}>
+				<LoadingModal visible={this.state.loading}/>
 				<LoginButton
 					readPermissions={["user_friends"]}
 					onLoginFinished={(error, result) => {
@@ -36,12 +35,17 @@ class SignIn extends Component {
 						} else if (result.isCancelled) {
 							alert("login is cancelled.");
 						} else {
+							this.toggleLoading();
 							this.getAccessToken();
 						}
 					}}
 					/>
 			</View>
 		);
+	};
+
+	toggleLoading() {
+		this.setState({ loading: !this.state.loading })
 	};
 
 	getAccessToken() {
@@ -62,6 +66,7 @@ class SignIn extends Component {
 		AuthApi.getUserData(data)
 			.then((data) => {
 				this.props.setUserCb(data);
+				this.toggleLoading();
 				data.new_user ? this.goToWelcomeScreen() : this.goToHomeScreen()
 			})
 	};
