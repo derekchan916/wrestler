@@ -41,6 +41,7 @@ class SignIn extends Component {
 								this.getAccessToken();
 							}
 						}}
+						onLogoutFinished={() => this.removeUserData()}
 						/>
 				</View>
 			</View>
@@ -86,6 +87,12 @@ class SignIn extends Component {
 	saveData(value) {
 		AsyncStorage.setItem('user', value);
 	};
+
+	removeUserData() {
+		AsyncStorage.removeItem('user')
+		.then(() => this.props.navigator.immediatelyResetRouteStack([{ name: 'SignIn'}]))
+		.done()
+	}
 };
 
 const styles = StyleSheet.create({
