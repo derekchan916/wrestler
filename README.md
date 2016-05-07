@@ -35,6 +35,7 @@ If build fails, gg your life too bad.
 Refer to [react-native-fbsdk](https://github.com/facebook/react-native-fbsdk)
 
 ## Saving data like cookies
+Remember to import AsyncStorage in React
 ```JavaScript
 componentDidMount: function() {
     AsyncStorage.getItem("myKey").then((value) => {
@@ -46,4 +47,9 @@ saveData: function(value) {
 	AsyncStorage.setItem("myKey", value);
 	this.setState({"myKey": value});
 }
+
+AsyncStorage.removeItem('key', (err) => {
+	console.log('SUCCESSFUL REMOVAL')
+});
 ```
+Refer to [saving data in React](https://www.thepolyglotdeveloper.com/2015/09/saving-data-in-your-react-native-mobile-application/)

@@ -1,6 +1,7 @@
 'use strict'
 
 import React, {
+	AsyncStorage,
 	Component,
 	StyleSheet,
 	Text,
@@ -68,6 +69,7 @@ class SignIn extends Component {
 		AuthApi.getUserData(data)
 			.then((data) => {
 				this.props.setUserCb(data);
+				this.saveData(JSON.stringify(data));
 				this.toggleLoading();
 				data.new_user ? this.goToWelcomeScreen() : this.goToHomeScreen()
 			})
@@ -79,6 +81,10 @@ class SignIn extends Component {
 
 	goToWelcomeScreen() {
 		this.props.navigator.push({name: 'Welcome'});
+	};
+
+	saveData(value) {
+		AsyncStorage.setItem('user', value);
 	};
 };
 

@@ -1,13 +1,15 @@
 'use strict'
 
 import React, {
+	AsyncStorage,
 	Component,
 	Navigator,
 	StyleSheet,
+	View,
 } from 'react-native';
+import Home from './Home/Home';
 import SignIn from './Authentication/Components/SignIn';
 import Welcome from './Authentication/Components/Welcome';
-import Home from './Home/Home';
 
 var ROUTES = {
 	SignIn  : SignIn,
@@ -19,12 +21,24 @@ class MainClass extends Component {
 	constructor() {
 		super();
 		this.state = {
-			user: null
+			user: null,
+			loading: true,
 		};
 	};
 
+	componentDidMount() {
+	    AsyncStorage.getItem('user').then((value) => {
+			value = JSON.parse(value) || null;
+	        this.setState({
+				user: value,
+				loading: false
+			})
+	    }).done();
+	};
+
 	render() {
-		var initialRoute = this.state.user ? 'Welcome' : 'SignIn';
+		if (this.state.loading) {return (<View></View>)}
+		var initialRoute = this.state.user ? 'Home' : 'SignIn';
 
 		return (
 			<Navigator
