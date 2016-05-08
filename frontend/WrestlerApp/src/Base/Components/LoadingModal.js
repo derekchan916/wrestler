@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 10,
 		padding: 20,
-		backgroundColor: 'rgba(0, 0, 0, 0.7)',
+		backgroundColor: '#333333',
 	},
 	activityIndicator: {
 		height: 80,

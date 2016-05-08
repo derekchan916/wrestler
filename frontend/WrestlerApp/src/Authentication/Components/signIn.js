@@ -72,12 +72,12 @@ class SignIn extends Component {
 				this.props.setUserCb(data);
 				this.saveData(JSON.stringify(data));
 				this.toggleLoading();
-				data.new_user ? this.goToWelcomeScreen() : this.goToHomeScreen()
+				data.new_user ? this.goToWelcomeScreen() : this.goToMainBarScreen()
 			})
 	};
 
-	goToHomeScreen() {
-		this.props.navigator.immediatelyResetRouteStack([{ name: 'Home'}]);
+	goToMainBarScreen() {
+		this.props.navigator.immediatelyResetRouteStack([{ name: 'MainBar'}]);
 	};
 
 	goToWelcomeScreen() {

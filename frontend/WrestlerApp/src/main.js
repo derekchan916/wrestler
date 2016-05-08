@@ -7,14 +7,14 @@ import React, {
 	StyleSheet,
 	View,
 } from 'react-native';
-import Home from './Home/Home';
+import MainBar from './Home/Components/MainBar';
 import SignIn from './Authentication/Components/SignIn';
 import Welcome from './Authentication/Components/Welcome';
 
 var ROUTES = {
 	SignIn  : SignIn,
 	Welcome : Welcome,
-	Home    : Home
+	MainBar : MainBar
 }
 
 class MainClass extends Component {
@@ -38,7 +38,7 @@ class MainClass extends Component {
 
 	render() {
 		if (this.state.loading) {return (<View></View>)}
-		var initialRoute = this.state.user ? 'Home' : 'SignIn';
+		var initialRoute = this.state.user ? 'MainBar' : 'SignIn';
 
 		return (
 			<Navigator
