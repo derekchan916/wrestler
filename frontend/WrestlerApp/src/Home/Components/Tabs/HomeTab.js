@@ -7,12 +7,18 @@ import React, {
 	Text,
 	View
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const TabName = "Home";
 
 class HomeTab extends Component {
 	constructor(props) {
 		super(props);
+	};
+
+	componentWillMount() {
+    // https://github.com/facebook/react-native/issues/1403 prevents this to work for initial load
+		// Icon.getImageSource('ios-gear', 30).then((source) => this.setState({ gearIcon: source }));
 	};
 
 	render() {

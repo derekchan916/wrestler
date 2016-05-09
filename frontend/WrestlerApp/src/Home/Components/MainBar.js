@@ -10,6 +10,7 @@ import React, {
 import ProfileTab from './Tabs/ProfileTab';
 import ChatTab from './Tabs/ChatTab';
 import HomeTab from './Tabs/HomeTab';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class MainBar extends Component {
 	constructor(props) {
@@ -19,13 +20,9 @@ class MainBar extends Component {
 		}
 	};
 
-	  _renderContent(color: string, pageText: string, num?: number) {
-	    return (
-	      <View style={[styles.tabContent, {backgroundColor: color}]}>
-	        <Text style={styles.tabText}>{pageText}</Text>
-	        <Text style={styles.tabText}>{num} re-renders of the {pageText}</Text>
-	      </View>
-	    );
+	componentWillMount() {
+    // https://github.com/facebook/react-native/issues/1403 prevents this to work for initial load
+		// Icon.getImageSource('ios-gear', 30).then((source) => this.setState({ gearIcon: source }));
 	};
 
 	setSelectedTabCb(tab) {
