@@ -7,9 +7,9 @@ import React, {
 	StyleSheet,
 	View,
 } from 'react-native';
-import MainBar from './Home/Components/MainBar';
-import SignIn from './Authentication/Components/SignIn';
-import Welcome from './Authentication/Components/Welcome';
+import MainBar from '../Home/Components/MainBar';
+import SignIn from '../Authentication/Components/SignIn';
+import Welcome from '../Authentication/Components/Welcome';
 
 var ROUTES = {
 	SignIn  : SignIn,

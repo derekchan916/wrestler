@@ -1,6 +1,6 @@
 'use strict'
 
-import BaseApi from '../../Base/Util/BaseApi';
+import BaseApi from '../../Base/Util/baseApi';
 
 var localApi = 'http://localhost:3000/api';
 var fbApiUrl = 'https://graph.facebook.com/v2.3';

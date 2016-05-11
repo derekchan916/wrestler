@@ -9,6 +9,6 @@
 import React, {
 	AppRegistry
 } from 'react-native';
-import Main from './src/Main';
+import App from './src/app';
 
-AppRegistry.registerComponent('WrestlerApp', () => Main);
+AppRegistry.registerComponent('WrestlerApp', () => App);

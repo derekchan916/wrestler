@@ -7,7 +7,7 @@ import React, {
 	Text,
 	View
 } from 'react-native';
-import AuthApi from '../Util/AuthApi';
+import AuthApi from '../Util/authApi';
 import LoadingModal from '../../Base/Components/LoadingModal';
 const FBSDK = require('react-native-fbsdk');
 const {
