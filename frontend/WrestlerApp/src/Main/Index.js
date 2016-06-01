@@ -8,7 +8,7 @@ import React, {
 	View,
 } from 'react-native';
 import MainBar from './MainBar';
-import SignIn from '../Authentication/Components/SignIn';
+import SignIn from '../User/Components/SignIn';
 // import Welcome from '../Authentication/Components/Welcome';
 
 var ROUTES = {
@@ -27,17 +27,17 @@ class MainClass extends Component {
 	};
 
 	componentDidMount() {
-	    AsyncStorage.getItem('user').then((value) => {
-			value = JSON.parse(value) || null;
-	        this.setState({
-				user: value,
-				loading: false
-			})
-	    }).done();
+	    // AsyncStorage.getItem('user').then((value) => {
+		// 	value = JSON.parse(value) || null;
+	    //     this.setState({
+		// 		user: value,
+		// 		loading: false
+		// 	})
+	    // }).done();
 	};
 
 	render() {
-		if (this.state.loading) {return (<View></View>)}
+		// if (this.state.loading) {return (<View></View>)}
 		var initialRoute = this.state.user ? 'MainBar' : 'SignIn';
 
 		return (
@@ -58,7 +58,7 @@ class MainClass extends Component {
 				navigator={navigator}
 				user={this.state.user}
 				setUserCb={(data) => this.setUserCb(data)}
-				/>
+			/>
 		);
 	};
 

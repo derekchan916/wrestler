@@ -12,7 +12,7 @@ import thunk from 'redux-thunk';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 // Reducers
-import userReducer from './Authentication/Reducer/userReducer'
+import userReducer from './User/Reducer/userReducer'
 const appStoreReducers = combineReducers({
 	user   : userReducer
 });
