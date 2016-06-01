@@ -7,6 +7,9 @@ import React, {
 	StyleSheet,
 	View,
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import MainBar from './MainBar';
 import SignIn from '../User/Components/SignIn';
 // import Welcome from '../Authentication/Components/Welcome';
@@ -23,7 +26,6 @@ class MainClass extends Component {
 	constructor() {
 		super();
 		this.state = {
-			user: null,
 			loading: true,
 		};
 	};
@@ -40,7 +42,7 @@ class MainClass extends Component {
 
 	render() {
 		// if (this.state.loading) {return (<View></View>)}
-		var initialRoute = this.state.user ? 'MainBar' : 'SignIn';
+		var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
 
 		return (
 			<Navigator
@@ -58,17 +60,20 @@ class MainClass extends Component {
 			<Component
 				route={route}
 				navigator={navigator}
-				user={this.state.user}
-				setUserCb={(data) => this.setUserCb(data)}
 			/>
 		);
 	};
+}
 
-	setUserCb(data) {
-		this.setState({
-		 	user: data
-		})
-	};
+const stateToProps = (state) => {
+	return {
+		user: state.user
+	}
+}
+
+const dispatchToProps = (dispatch) => {
+	return bindActionCreators({
+	}, dispatch)
 }
 
 const styles = StyleSheet.create({
@@ -77,4 +82,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default MainClass;
+export default connect(stateToProps, dispatchToProps)(MainClass);
