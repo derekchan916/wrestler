@@ -10,7 +10,9 @@ import React, {
 import MainBar from './MainBar';
 import SignIn from '../User/Components/SignIn';
 // import Welcome from '../Authentication/Components/Welcome';
+import loadingDecorator from '../Base/Decorator/loadingDecorator';
 
+// @loadingDecorator
 var ROUTES = {
 	SignIn  : SignIn,
 	// Welcome : Welcome,

@@ -2,13 +2,13 @@
 
 import BaseApi from '../../Base/Util/baseApi';
 
-const localApi = 'http://localhost:3000/api';
-const fbApiUrl = 'https://graph.facebook.com/v2.3';
+const LOCAL_API = 'http://localhost:3000/api';
+const FB_API_URL = 'https://graph.facebook.com/v2.3';
 // var api = `https://graph.facebook.com/v2.3/${user.userId}/picture?width=${FB_PHOTO_WIDTH}&redirect=false&access_token=${user.token}`;
 
 class UserApi {
 	static addNewUser(user) {
-		fetch(localApi + 'user', {
+		fetch(LOCAL_API + 'user', {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -24,7 +24,7 @@ class UserApi {
 	static getUserFbInfo(fbId, token) {
 		var params = 'first_name,last_name,email';
 		return BaseApi.fetch({
-			url: `${fbApiUrl}/${fbId}`,
+			url: `${FB_API_URL}/${fbId}`,
 			method: 'GET',
 			query: {
 				fields: params,
@@ -49,7 +49,7 @@ class UserApi {
 		};
 
 		return BaseApi.fetch({
-			url: `${localApi}/${apiEndpoint}`,
+			url: `${LOCAL_API}/${apiEndpoint}`,
 			method: 'POST',
 			body: body,
 		})

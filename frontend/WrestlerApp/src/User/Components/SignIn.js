@@ -8,7 +8,7 @@ import React, {
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
 
 import getFbUser from '../ActionCreator/getFbUserAction';
 import UserApi from '../DAO/UserApi';
@@ -34,7 +34,7 @@ class SignIn extends Component {
 			this.saveData(JSON.stringify(nextProps.user.data));
 			this.goToMainBarScreen();
 		}
-	}
+	};
 
 	render() {
 		return (

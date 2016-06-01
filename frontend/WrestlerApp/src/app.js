@@ -13,8 +13,10 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 // Reducers
 import userReducer from './User/Reducer/userReducer'
+import loadingReducer from './Base/Reducer/loadingReducer'
 const appStoreReducers = combineReducers({
-	user : userReducer
+	user    : userReducer,
+	loading : loadingReducer
 });
 
 // Store
