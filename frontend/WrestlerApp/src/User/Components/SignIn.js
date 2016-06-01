@@ -7,8 +7,16 @@ import React, {
 	Text,
 	View
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
+
+import getUser from '../ActionCreator/getUserAction';
 import AuthApi from '../Util/authApi';
 import LoadingModal from '../../Base/Components/LoadingModal';
+
+// dispatch => ({
+// 	setMerchant: merchant => dispatch(setMerchantAction(merchant)),
+// })
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -26,6 +34,7 @@ class SignIn extends Component {
 	};
 
 	render() {
+		console.log('props in signin', this.props);
 		return (
 			<View style={styles.container}>
 				<LoadingModal visible={this.state.loading}/>
@@ -45,6 +54,7 @@ class SignIn extends Component {
 						onLogoutFinished={() => this.removeUserData()}
 					/>
 				</View>
+				<Text onPress={() => this.props.getUser('fake data')}>TESTING CLICK HERE</Text>
 			</View>
 		);
 	};
@@ -97,6 +107,19 @@ class SignIn extends Component {
 	}
 };
 
+const stateToProps = (state) => {
+	return {
+		user: state.user
+	}
+}
+
+const dispatchToProps = (dispatch) => {
+	return bindActionCreators({
+		getUser
+	}, dispatch)
+	// getUser: User => dispatch(getUserAction(User))
+}
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -111,4 +134,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default SignIn;
+export default connect(stateToProps, dispatchToProps)(SignIn);

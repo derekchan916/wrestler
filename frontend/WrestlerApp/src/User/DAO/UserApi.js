@@ -6,7 +6,7 @@ var localApi = 'http://localhost:3000/api';
 var fbApiUrl = 'https://graph.facebook.com/v2.3';
 // var api = `https://graph.facebook.com/v2.3/${user.userId}/picture?width=${FB_PHOTO_WIDTH}&redirect=false&access_token=${user.token}`;
 
-class AuthApi {
+class UserApi {
 	static addNewUser(user) {
 		fetch(localApi + 'user', {
 			method: 'POST',
@@ -33,7 +33,7 @@ class AuthApi {
 		})
 		.then(data => data)
 		.catch((error) => {
-			console.warn('authApi', error)
+			console.warn('UserApi', error)
 		})
 	};
 
@@ -55,9 +55,9 @@ class AuthApi {
 		})
 		.then(data => data)
 		.catch((error) => {
-			console.warn('authApi', error)
+			console.warn('UserApi', error)
 		})
 	}
 };
 
-export default AuthApi;
+export default UserApi;

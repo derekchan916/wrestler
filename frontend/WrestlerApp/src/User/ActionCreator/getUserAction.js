@@ -1,7 +1,7 @@
-import BagApi from '../Util/authApi';
+import UserApi from '../DAO/UserApi';
 import asyncActionCreator from '../../Base/ActionCreator/asyncActionCreator';
 
 export default asyncActionCreator({
-	name:   'BAG_GET',
-	action: null
+	name:   'USER_GET',
+	action: (data) => UserApi.getUserData(data)
 });
