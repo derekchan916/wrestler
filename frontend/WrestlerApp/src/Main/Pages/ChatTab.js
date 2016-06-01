@@ -23,7 +23,7 @@ class ProfileTab extends Component {
 				onPress={() => {
 					this.props.setSelectedTabCb(TabName)
 				}}
-				>
+			>
 				<View style={[styles.tabContent, {backgroundColor: '#783E33'}]}>
 					<Text style={styles.tabText}>re-renders of the Profile Page</Text>
 				</View>
@@ -52,4 +52,4 @@ const styles = StyleSheet.create({
     },
 })
 
-module.exports = ProfileTab;
+export default ProfileTab;

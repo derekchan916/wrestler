@@ -8,7 +8,7 @@ import React, {
 	View
 } from 'react-native';
 
-var FB_PHOTO_WIDTH = 200;
+const FB_PHOTO_WIDTH = 200;
 
 class FBImage extends Component {
 	constructor(props) {
@@ -17,9 +17,11 @@ class FBImage extends Component {
 			photo: null
 		}
 	};
+
 	propTypes: {
 		user: React.PropTypes.object.isRequired,
 	};
+
 	componentWillMount() {
 		var _this = this;
 		var user = this.props.user;
@@ -38,6 +40,7 @@ class FBImage extends Component {
 		})
 		.done();
 	};
+
 	render() {
 		if(this.state.photo == null) return this.renderLoading();
 		var photo = this.state.photo;
@@ -52,11 +55,12 @@ class FBImage extends Component {
 					}
 				}
 				source={{uri: photo && photo.url}}
-				/>
+			/>
 			</View>
 		);
 
 	};
+
 	renderLoading() {
 		return (
 			<View>
@@ -72,4 +76,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = FBImage;
+export default FBImage;

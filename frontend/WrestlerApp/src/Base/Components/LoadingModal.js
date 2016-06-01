@@ -20,13 +20,13 @@ class LoadingModal extends Component {
 				<Modal
 					transparent={true}
 					visible={this.props.visible}
-					>
+				>
 					<View style={styles.container}>
 						<View style={styles.innerContainer}>
 							<ActivityIndicatorIOS
-					          style={styles.activityIndicator}
-					          color="white"
-					          size="large"
+								style={styles.activityIndicator}
+								color="white"
+								size="large"
 					        />
 							<Text style={styles.text}>Loading...</Text>
 						</View>

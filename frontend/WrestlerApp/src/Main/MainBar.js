@@ -7,9 +7,9 @@ import React, {
 	Text,
 	View
 } from 'react-native';
-import ProfileTab from './Tabs/ProfileTab';
-import ChatTab from './Tabs/ChatTab';
-import HomeTab from './Tabs/HomeTab';
+import ProfileTab from './Pages/ProfileTab';
+import ChatTab from './Pages/ChatTab';
+import HomeTab from './Pages/HomeTab';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class MainBar extends Component {
@@ -33,22 +33,22 @@ class MainBar extends Component {
 
 	render() {
 	    return (
-	      <TabBarIOS
-	        tintColor='white'
-	        barTintColor='#333333'>
-			<ProfileTab
+			<TabBarIOS
+				tintColor='white'
+				barTintColor='#333333'>
+				<ProfileTab
 				selected={this.state.selected}
 				setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
+			/>
+				<ChatTab
+					selected={this.state.selected}
+					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
 				/>
-			<ChatTab
-				selected={this.state.selected}
-				setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
+				<HomeTab
+					selected={this.state.selected}
+					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
 				/>
-			<HomeTab
-				selected={this.state.selected}
-				setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
-				/>
-	      </TabBarIOS>
+			</TabBarIOS>
 	    );
 	};
 
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
     },
 })
 
-module.exports = MainBar;
+export default MainBar;

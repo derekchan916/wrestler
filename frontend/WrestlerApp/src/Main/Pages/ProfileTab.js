@@ -7,18 +7,12 @@ import React, {
 	Text,
 	View
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
 
-const TabName = "Home";
+const TabName = "Profile";
 
-class HomeTab extends Component {
+class ProfileTab extends Component {
 	constructor(props) {
 		super(props);
-	};
-
-	componentWillMount() {
-    // https://github.com/facebook/react-native/issues/1403 prevents this to work for initial load
-		// Icon.getImageSource('ios-gear', 30).then((source) => this.setState({ gearIcon: source }));
 	};
 
 	render() {
@@ -29,8 +23,9 @@ class HomeTab extends Component {
 				onPress={() => {
 					this.props.setSelectedTabCb(TabName)
 				}}
-				>
-				<View style={[styles.tabContent, {backgroundColor: '#21551C'}]}>
+			>
+				<View style={[styles.tabContent, {backgroundColor: '#414A8C'}]}>
+					<Text>WHY IS THIS SHIT NOT WORKING</Text>
 					<Text style={styles.tabText}>re-renders of the Profile Page</Text>
 				</View>
 	        </TabBarIOS.Item>
@@ -58,4 +53,4 @@ const styles = StyleSheet.create({
     },
 })
 
-module.exports = HomeTab;
+export default ProfileTab;

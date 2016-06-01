@@ -9,6 +9,7 @@ import React, {
 } from 'react-native';
 import AuthApi from '../Util/authApi';
 import LoadingModal from '../../Base/Components/LoadingModal';
+
 const FBSDK = require('react-native-fbsdk');
 const {
 	AccessToken,
@@ -42,7 +43,7 @@ class SignIn extends Component {
 							}
 						}}
 						onLogoutFinished={() => this.removeUserData()}
-						/>
+					/>
 				</View>
 			</View>
 		);
@@ -72,7 +73,8 @@ class SignIn extends Component {
 				this.props.setUserCb(data);
 				this.saveData(JSON.stringify(data));
 				this.toggleLoading();
-				data.new_user ? this.goToWelcomeScreen() : this.goToMainBarScreen()
+				this.goToMainBarScreen();
+				// data.new_user ? this.goToWelcomeScreen() : this.goToMainBarScreen()
 			})
 	};
 

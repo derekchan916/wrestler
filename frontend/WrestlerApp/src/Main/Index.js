@@ -7,13 +7,13 @@ import React, {
 	StyleSheet,
 	View,
 } from 'react-native';
-import MainBar from '../Home/Components/MainBar';
+import MainBar from './MainBar';
 import SignIn from '../Authentication/Components/SignIn';
-import Welcome from '../Authentication/Components/Welcome';
+// import Welcome from '../Authentication/Components/Welcome';
 
 var ROUTES = {
 	SignIn  : SignIn,
-	Welcome : Welcome,
+	// Welcome : Welcome,
 	MainBar : MainBar
 }
 
@@ -46,7 +46,7 @@ class MainClass extends Component {
 				renderScene={(route, navigator) => this.renderScene(route, navigator)}
 				configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
 				style={styles.container}
-				/>
+			/>
 		);
 	};
 
@@ -75,4 +75,4 @@ const styles = StyleSheet.create({
 	},
 })
 
-module.exports = MainClass;
+export default MainClass;
