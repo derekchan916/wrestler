@@ -11,12 +11,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
 import getUser from '../ActionCreator/getUserAction';
-import AuthApi from '../Util/authApi';
+import getFbUser from '../ActionCreator/getFbUserAction';
+import UserApi from '../DAO/UserApi';
 import LoadingModal from '../../Base/Components/LoadingModal';
-
-// dispatch => ({
-// 	setMerchant: merchant => dispatch(setMerchantAction(merchant)),
-// })
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -34,7 +31,6 @@ class SignIn extends Component {
 	};
 
 	render() {
-		console.log('props in signin', this.props);
 		return (
 			<View style={styles.container}>
 				<LoadingModal visible={this.state.loading}/>
@@ -54,7 +50,6 @@ class SignIn extends Component {
 						onLogoutFinished={() => this.removeUserData()}
 					/>
 				</View>
-				<Text onPress={() => this.props.getUser('fake data')}>TESTING CLICK HERE</Text>
 			</View>
 		);
 	};
@@ -66,16 +61,16 @@ class SignIn extends Component {
 	getAccessToken() {
 		AccessToken.getCurrentAccessToken()
 			.then((token) => {
-				this.getUserFbInfo(token.userID, token.accessToken);
+				this.props.getFbUser(token.userID, token.accessToken);
 			});
 	};
 
-	getUserFbInfo(userID, token) {
-		AuthApi.getUserFbInfo(userID, token)
-			.then((data) => {
-				this.getUserData(data);
-			});
-	};
+	// getUserFbInfo(userID, token) {
+	// 	AuthApi.getUserFbInfo(userID, token)
+	// 		.then((data) => {
+	// 			this.getUserData(data);
+	// 		});
+	// };
 
 	getUserData(data) {
 		AuthApi.getUserData(data)
@@ -115,7 +110,8 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
 	return bindActionCreators({
-		getUser
+		getUser,
+		getFbUser
 	}, dispatch)
 	// getUser: User => dispatch(getUserAction(User))
 }

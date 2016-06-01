@@ -2,8 +2,8 @@
 
 import BaseApi from '../../Base/Util/baseApi';
 
-var localApi = 'http://localhost:3000/api';
-var fbApiUrl = 'https://graph.facebook.com/v2.3';
+const localApi = 'http://localhost:3000/api';
+const fbApiUrl = 'https://graph.facebook.com/v2.3';
 // var api = `https://graph.facebook.com/v2.3/${user.userId}/picture?width=${FB_PHOTO_WIDTH}&redirect=false&access_token=${user.token}`;
 
 class UserApi {
@@ -31,13 +31,14 @@ class UserApi {
 				access_token: token
 			},
 		})
-		.then(data => data)
+		.then(data => this.getUserData(data))
 		.catch((error) => {
-			console.warn('UserApi', error)
+			console.warn('UserApi.getUserFbInfo', error)
 		})
 	};
 
 	static getUserData(data) {
+		console.log('data in here', data)
 		var apiEndpoint = 'user';
 		var body = {
 			user: {
@@ -53,9 +54,12 @@ class UserApi {
 			method: 'POST',
 			body: body,
 		})
-		.then(data => data)
+		.then(data => {
+			console.log('DATA GOT TO HERE', data);
+			return data;
+		})
 		.catch((error) => {
-			console.warn('UserApi', error)
+			console.warn('UserApi.getUserData', error)
 		})
 	}
 };
