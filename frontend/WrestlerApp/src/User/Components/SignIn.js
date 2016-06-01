@@ -10,7 +10,6 @@ import React, {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
-import getUser from '../ActionCreator/getUserAction';
 import getFbUser from '../ActionCreator/getFbUserAction';
 import UserApi from '../DAO/UserApi';
 import LoadingModal from '../../Base/Components/LoadingModal';
@@ -30,6 +29,13 @@ class SignIn extends Component {
 		};
 	};
 
+	componentWillReceiveProps (nextProps) {
+		if (!nextProps.user.loading && nextProps.user.data) {
+			this.saveData(JSON.stringify(nextProps.user.data));
+			this.goToMainBarScreen();
+		}
+	}
+
 	render() {
 		return (
 			<View style={styles.container}>
@@ -43,7 +49,7 @@ class SignIn extends Component {
 							} else if (result.isCancelled) {
 								alert("login is cancelled.");
 							} else {
-								this.toggleLoading();
+								// this.toggleLoading();
 								this.getAccessToken();
 							}
 						}}
@@ -65,24 +71,6 @@ class SignIn extends Component {
 			});
 	};
 
-	// getUserFbInfo(userID, token) {
-	// 	AuthApi.getUserFbInfo(userID, token)
-	// 		.then((data) => {
-	// 			this.getUserData(data);
-	// 		});
-	// };
-
-	getUserData(data) {
-		AuthApi.getUserData(data)
-			.then((data) => {
-				this.props.setUserCb(data);
-				this.saveData(JSON.stringify(data));
-				this.toggleLoading();
-				this.goToMainBarScreen();
-				// data.new_user ? this.goToWelcomeScreen() : this.goToMainBarScreen()
-			})
-	};
-
 	goToMainBarScreen() {
 		this.props.navigator.immediatelyResetRouteStack([{ name: 'MainBar'}]);
 	};
@@ -97,8 +85,8 @@ class SignIn extends Component {
 
 	removeUserData() {
 		AsyncStorage.removeItem('user')
-		.then(() => this.props.navigator.immediatelyResetRouteStack([{ name: 'SignIn'}]))
-		.done()
+			.then(() => this.props.navigator.immediatelyResetRouteStack([{ name: 'SignIn'}]))
+			.done()
 	}
 };
 
@@ -110,10 +98,8 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
 	return bindActionCreators({
-		getUser,
 		getFbUser
 	}, dispatch)
-	// getUser: User => dispatch(getUserAction(User))
 }
 
 const styles = StyleSheet.create({

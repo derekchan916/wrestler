@@ -38,7 +38,6 @@ class UserApi {
 	};
 
 	static getUserData(data) {
-		console.log('data in here', data)
 		var apiEndpoint = 'user';
 		var body = {
 			user: {
@@ -55,7 +54,6 @@ class UserApi {
 			body: body,
 		})
 		.then(data => {
-			console.log('DATA GOT TO HERE', data);
 			return data;
 		})
 		.catch((error) => {
