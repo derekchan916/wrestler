@@ -8,7 +8,6 @@ import React, {
 	View
 } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import getFbUserAction from '../ActionCreator/getFbUserAction';
 import UserApi from '../DAO/UserApi';
@@ -27,7 +26,7 @@ class SignIn extends Component {
 		this.state = {
 			loading: false
 		};
-	};
+	}
 
 	componentWillReceiveProps (nextProps) {
 		if (!nextProps.user.loading && nextProps.user.data) {
@@ -35,7 +34,7 @@ class SignIn extends Component {
 			this.goToMainBarScreen();
 			this.toggleLoading();
 		}
-	};
+	}
 
 	render() {
 		return (
@@ -59,30 +58,30 @@ class SignIn extends Component {
 				</View>
 			</View>
 		);
-	};
+	}
 
 	toggleLoading() {
 		this.setState({ loading: !this.state.loading })
-	};
+	}
 
 	getAccessToken() {
 		AccessToken.getCurrentAccessToken()
 			.then((token) => {
 				this.props.getFbUser({userId: token.userID, accessToken: token.accessToken});
 			});
-	};
+	}
 
 	goToMainBarScreen() {
 		this.props.navigator.immediatelyResetRouteStack([{ name: 'MainBar'}]);
-	};
+	}
 
 	goToWelcomeScreen() {
 		this.props.navigator.push({name: 'Welcome'});
-	};
+	}
 
 	saveData(value) {
 		AsyncStorage.setItem('user', value);
-	};
+	}
 
 	removeUserData() {
 		AsyncStorage.removeItem('user')

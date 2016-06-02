@@ -1,4 +1,3 @@
-
 var ACTION = 'USER_SET';
 
 function loadActionCreator (user) {

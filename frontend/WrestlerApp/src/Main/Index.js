@@ -8,13 +8,12 @@ import React, {
 	View,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
-import MainBar from './MainBar';
-import SignIn from '../User/Components/SignIn';
 // import Welcome from '../Authentication/Components/Welcome';
 import setUserAction from '../User/ActionCreator/setUserAction';
 import loadingModalDecorator from '../Base/Decorator/loadingModalDecorator';
+import MainBar from './MainBar';
+import SignIn from '../User/Components/SignIn';
 
 // @loadingDecorator
 var ROUTES = {
@@ -41,7 +40,7 @@ class MainClass extends Component {
 
 	render() {
 		if (this.state.loading) {
-			return (<View></View>)
+			return null;
 		}
 		var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
 
