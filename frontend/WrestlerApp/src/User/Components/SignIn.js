@@ -33,10 +33,12 @@ class SignIn extends Component {
 		if (!nextProps.user.loading && nextProps.user.data) {
 			this.saveData(JSON.stringify(nextProps.user.data));
 			this.goToMainBarScreen();
+			this.toggleLoading();
 		}
 	};
 
 	render() {
+
 		return (
 			<View style={styles.container}>
 				<LoadingModal visible={this.state.loading}/>
@@ -49,7 +51,7 @@ class SignIn extends Component {
 							} else if (result.isCancelled) {
 								alert("login is cancelled.");
 							} else {
-								// this.toggleLoading();
+								this.toggleLoading();
 								this.getAccessToken();
 							}
 						}}

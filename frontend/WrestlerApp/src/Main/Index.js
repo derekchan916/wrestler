@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import MainBar from './MainBar';
 import SignIn from '../User/Components/SignIn';
 // import Welcome from '../Authentication/Components/Welcome';
-import loadingDecorator from '../Base/Decorator/loadingDecorator';
+import loadingModalDecorator from '../Base/Decorator/loadingModalDecorator';
 
 // @loadingDecorator
 var ROUTES = {
@@ -65,21 +65,15 @@ class MainClass extends Component {
 	};
 }
 
-const stateToProps = (state) => {
-	return {
-		user: state.user
-	}
-}
-
-const dispatchToProps = (dispatch) => {
-	return bindActionCreators({
-	}, dispatch)
-}
-
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
 })
 
-export default connect(stateToProps, dispatchToProps)(MainClass);
+export default connect(
+	state => ({
+		user: state.user
+	})
+)(MainClass);
+// )(loadingModalDecorator(MainClass));
