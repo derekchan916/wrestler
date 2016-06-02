@@ -18,18 +18,18 @@ class MainBar extends Component {
 		this.state = {
 			selected: 'Chat',
 		}
-	};
+	}
 
 	componentWillMount() {
     // https://github.com/facebook/react-native/issues/1403 prevents this to work for initial load
 		// Icon.getImageSource('ios-gear', 30).then((source) => this.setState({ gearIcon: source }));
-	};
+	}
 
 	setSelectedTabCb(tab) {
 		this.setState({
 			selected: tab
 		});
-	};
+	}
 
 	render() {
 	    return (
@@ -37,9 +37,9 @@ class MainBar extends Component {
 				tintColor='white'
 				barTintColor='#333333'>
 				<ProfileTab
-				selected={this.state.selected}
-				setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
-			/>
+					selected={this.state.selected}
+					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
+				/>
 				<ChatTab
 					selected={this.state.selected}
 					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
@@ -47,12 +47,11 @@ class MainBar extends Component {
 				<HomeTab
 					selected={this.state.selected}
 					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
-				/>
+			/>
 			</TabBarIOS>
 	    );
-	};
-
-}
+	}
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -68,6 +67,6 @@ const styles = StyleSheet.create({
       color: 'white',
       margin: 50,
     },
-})
+});
 
 export default MainBar;

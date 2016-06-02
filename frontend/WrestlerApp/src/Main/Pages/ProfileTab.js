@@ -8,8 +8,11 @@ import React, {
 	View
 } from 'react-native';
 
+import UserImages from '../../User/Components/UserImages';
+
 const TabName = "Profile";
 
+//Below components are under User folder
 class ProfileTab extends Component {
 	constructor(props) {
 		super(props);
@@ -25,8 +28,7 @@ class ProfileTab extends Component {
 				}}
 			>
 				<View style={[styles.tabContent, {backgroundColor: '#414A8C'}]}>
-					<Text>WHY IS THIS SHIT NOT WORKING</Text>
-					<Text style={styles.tabText}>re-renders of the Profile Page</Text>
+					<UserImages />
 				</View>
 	        </TabBarIOS.Item>
 	    );
