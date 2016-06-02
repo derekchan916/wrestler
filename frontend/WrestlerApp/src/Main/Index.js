@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux';
 import MainBar from './MainBar';
 import SignIn from '../User/Components/SignIn';
 // import Welcome from '../Authentication/Components/Welcome';
+import setUserAction from '../User/ActionCreator/setUserAction';
 import loadingModalDecorator from '../Base/Decorator/loadingModalDecorator';
 
 // @loadingDecorator
@@ -28,20 +29,20 @@ class MainClass extends Component {
 		this.state = {
 			loading: true,
 		};
-	};
+	}
 
 	componentDidMount() {
-	    // AsyncStorage.getItem('user').then((value) => {
-		// 	value = JSON.parse(value) || null;
-	    //     this.setState({
-		// 		user: value,
-		// 		loading: false
-		// 	})
-	    // }).done();
-	};
+	    AsyncStorage.getItem('user').then((value) => {
+			value = JSON.parse(value) || null;
+			this.props.setUser(value);
+			this.toggleLoading();
+	    }).done();
+	}
 
 	render() {
-		// if (this.state.loading) {return (<View></View>)}
+		if (this.state.loading) {
+			return (<View></View>)
+		}
 		var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
 
 		return (
@@ -52,7 +53,7 @@ class MainClass extends Component {
 				style={styles.container}
 			/>
 		);
-	};
+	}
 
 	renderScene(route, navigator) {
 		var Component = ROUTES[route.name];
@@ -62,7 +63,11 @@ class MainClass extends Component {
 				navigator={navigator}
 			/>
 		);
-	};
+	}
+
+	toggleLoading() {
+		this.setState({ loading: !this.state.loading })
+	}
 }
 
 const styles = StyleSheet.create({
@@ -74,6 +79,9 @@ const styles = StyleSheet.create({
 export default connect(
 	state => ({
 		user: state.user
+	}),
+	dispatch => ({
+		setUser: user => dispatch(setUserAction(user))
 	})
 )(MainClass);
 // )(loadingModalDecorator(MainClass));

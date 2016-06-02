@@ -38,7 +38,6 @@ class SignIn extends Component {
 	};
 
 	render() {
-
 		return (
 			<View style={styles.container}>
 				<LoadingModal visible={this.state.loading}/>
@@ -111,6 +110,6 @@ export default connect(
 		user: state.user
 	}),
 	dispatch => ({
-		getFbUser: (options) => dispatch(getFbUserAction(options))
+		getFbUser: options => dispatch(getFbUserAction(options))
 	})
 )(SignIn);
