@@ -21,14 +21,14 @@ class UserApi {
 		})
 	};
 
-	static getUserFbInfo(fbId, token) {
+	static getUserFbInfo(options) {
 		var params = 'first_name,last_name,email';
 		return BaseApi.fetch({
-			url: `${FB_API_URL}/${fbId}`,
+			url: `${FB_API_URL}/${options.userId}`,
 			method: 'GET',
 			query: {
 				fields: params,
-				access_token: token
+				access_token: options.accessToken
 			},
 		})
 		.then(data => this.getUserData(data))

@@ -10,7 +10,7 @@ import React, {
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import getFbUser from '../ActionCreator/getFbUserAction';
+import getFbUserAction from '../ActionCreator/getFbUserAction';
 import UserApi from '../DAO/UserApi';
 import LoadingModal from '../../Base/Components/LoadingModal';
 
@@ -67,7 +67,7 @@ class SignIn extends Component {
 	getAccessToken() {
 		AccessToken.getCurrentAccessToken()
 			.then((token) => {
-				this.props.getFbUser(token.userID, token.accessToken);
+				this.props.getFbUser({userId: token.userID, accessToken: token.accessToken});
 			});
 	};
 
@@ -90,18 +90,6 @@ class SignIn extends Component {
 	}
 };
 
-const stateToProps = (state) => {
-	return {
-		user: state.user
-	}
-}
-
-const dispatchToProps = (dispatch) => {
-	return bindActionCreators({
-		getFbUser
-	}, dispatch)
-}
-
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -116,4 +104,11 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default connect(stateToProps, dispatchToProps)(SignIn);
+export default connect(
+	state => ({
+		user: state.user
+	}),
+	dispatch => ({
+		getFbUser: (options) => dispatch(getFbUserAction(options))
+	})
+)(SignIn);
