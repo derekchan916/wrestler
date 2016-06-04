@@ -23,26 +23,27 @@ var ROUTES = {
 }
 
 class MainClass extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			loading: true,
 		};
 	}
 
 	componentDidMount() {
-	    AsyncStorage.getItem('user').then((value) => {
-			value = JSON.parse(value) || null;
-			this.props.setUser(value);
-			this.toggleLoading();
-	    }).done();
+	    // AsyncStorage.getItem('user').then((value) => {
+		// 	value = JSON.parse(value) || null;
+		// 	this.props.setUser(value);
+		// 	this.toggleLoading();
+	    // }).done();
 	}
 
 	render() {
-		if (this.state.loading) {
-			return null;
-		}
-		var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
+		// if (this.state.loading) {
+		// 	return null;
+		// }
+		// var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
+		var initialRoute = 'MainBar'
 
 		return (
 			<Navigator
@@ -75,12 +76,14 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default connect(
-	state => ({
-		user: state.user
-	}),
-	dispatch => ({
-		setUser: user => dispatch(setUserAction(user))
-	})
-)(MainClass);
+// export default connect(
+// 	state => ({
+// 		user: state.user
+// 	}),
+// 	dispatch => ({
+// 		setUser: user => dispatch(setUserAction(user))
+// 	})
+// )(MainClass);
 // )(loadingModalDecorator(MainClass));
+var MainClassComponent = loadingModalDecorator(MainClass) || MainClass;
+export default MainClassComponent;

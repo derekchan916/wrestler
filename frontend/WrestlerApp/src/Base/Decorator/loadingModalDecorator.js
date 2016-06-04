@@ -9,22 +9,22 @@ import React, {
 	View,
 } from 'react-native';
 
-export default function (Comp) {
+export default function (DecoratedComponent) {
 
 	class LoadingModalWrapper extends Component {
 		render() {
-			console.log(Comp);
 			return (
-				<View>
-					<Comp {...this.props} />
+				<View style={styles.container}>
+					<DecoratedComponent {...this.props} />
+					{this.renderLoading()}
 				</View>
 			)
 		};
 
 		renderLoading() {
-			if (true) {
-				return null;
-			}
+			// if (true) {
+			// 	return null;
+			// }
 
 			return (
 				<View>
@@ -32,8 +32,8 @@ export default function (Comp) {
 						transparent={true}
 						visible={this.props.visible}
 					>
-						<View style={styles.container}>
-							<View style={styles.innerContainer}>
+						<View style={styles.wrapper}>
+							<View style={styles.innerWrapper}>
 								<ActivityIndicatorIOS
 									style={styles.activityIndicator}
 									color="white"
@@ -54,11 +54,14 @@ export default function (Comp) {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	wrapper: {
+		flex: 1,
 	    justifyContent: 'center',
 	    padding: 60,
 		backgroundColor: 'rgba(0, 0, 0, 0.1)',
 	},
-	innerContainer: {
+	innerWrapper: {
 		alignItems: 'center',
 		borderRadius: 10,
 		padding: 20,
