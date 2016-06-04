@@ -31,27 +31,25 @@ class MainClass extends Component {
 	}
 
 	componentDidMount() {
-	    // AsyncStorage.getItem('user').then((value) => {
-		// 	value = JSON.parse(value) || null;
-		// 	this.props.setUser(value);
-		// 	this.toggleLoading();
-	    // }).done();
+	    AsyncStorage.getItem('user').then((value) => {
+			value = JSON.parse(value) || null;
+			this.props.setUser(value);
+			this.toggleLoading();
+	    }).done();
 	}
 
 	render() {
-		// if (this.state.loading) {
-		// 	return null;
-		// }
-		// var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
-		var initialRoute = 'MainBar'
+		if (this.state.loading) {
+			return null;
+		}
+		var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
 
 		return (
 			<Navigator
 				initialRoute={{name: initialRoute}}
 				renderScene={(route, navigator) => this.renderScene(route, navigator)}
 				configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
-				style={styles.container}
-			/>
+				style={styles.container}/>
 		);
 	}
 
@@ -60,8 +58,7 @@ class MainClass extends Component {
 		return (
 			<Component
 				route={route}
-				navigator={navigator}
-			/>
+				navigator={navigator}/>
 		);
 	}
 
@@ -75,15 +72,16 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 })
+var MainClassComponent;
 
-// export default connect(
-// 	state => ({
-// 		user: state.user
-// 	}),
-// 	dispatch => ({
-// 		setUser: user => dispatch(setUserAction(user))
-// 	})
-// )(MainClass);
-// )(loadingModalDecorator(MainClass));
-var MainClassComponent = loadingModalDecorator(MainClass) || MainClass;
+MainClassComponent = loadingModalDecorator(MainClass) || MainClass;
+MainClassComponent = connect (
+	state => ({
+		user: state.user
+	}),
+	dispatch => ({
+		setUser: user => dispatch(setUserAction(user))
+	})
+)(MainClassComponent) || MainClassComponent;
+
 export default MainClassComponent;

@@ -8,10 +8,12 @@ import React, {
 	Text,
 	View,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 export default function (DecoratedComponent) {
 
 	class LoadingModalWrapper extends Component {
+
 		render() {
 			return (
 				<View style={styles.container}>
@@ -30,8 +32,7 @@ export default function (DecoratedComponent) {
 				<View>
 					<Modal
 						transparent={true}
-						visible={this.props.visible}
-					>
+						visible={this.props.visible}>
 						<View style={styles.wrapper}>
 							<View style={styles.innerWrapper}>
 								<ActivityIndicatorIOS
@@ -48,8 +49,13 @@ export default function (DecoratedComponent) {
 		}
 	}
 
-	return LoadingModalWrapper;
+	return connect (
+		state => ({
+			loading: state.loading
+		}),
+	)(LoadingModalWrapper);
 }
+
 
 const styles = StyleSheet.create({
 	container: {

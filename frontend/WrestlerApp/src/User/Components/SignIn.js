@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default connect(
+export default connect (
 	state => ({
 		user: state.user
 	}),
