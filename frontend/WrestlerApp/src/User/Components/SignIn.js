@@ -10,6 +10,8 @@ import React, {
 import { connect } from 'react-redux';
 
 import getFbUserAction from '../ActionCreator/getFbUserAction';
+import beginLoadingAction from '../../Base/ActionCreator/beginLoadingAction';
+import stopLoadingAction from '../../Base/ActionCreator/stopLoadingAction';
 import UserApi from '../DAO/UserApi';
 import LoadingModal from '../../Base/Components/LoadingModal';
 
@@ -26,6 +28,7 @@ class SignIn extends Component {
 		this.state = {
 			loading: false
 		};
+		this.props.beginLoading();
 	}
 
 	componentWillReceiveProps (nextProps) {
@@ -37,9 +40,9 @@ class SignIn extends Component {
 	}
 
 	render() {
+		// <LoadingModal visible={this.state.loading}/>
 		return (
 			<View style={styles.container}>
-				<LoadingModal visible={this.state.loading}/>
 				<View style={styles.fbContainer}>
 					<LoginButton
 						readPermissions={["user_friends"]}
@@ -49,7 +52,7 @@ class SignIn extends Component {
 							} else if (result.isCancelled) {
 								alert("login is cancelled.");
 							} else {
-								this.toggleLoading();
+								this.props.beginLoading();
 								this.getAccessToken();
 							}
 						}}
@@ -106,9 +109,12 @@ const styles = StyleSheet.create({
 
 export default connect (
 	state => ({
-		user: state.user
+		user: state.user,
+		loader: state.loader
 	}),
 	dispatch => ({
-		getFbUser: options => dispatch(getFbUserAction(options))
+		getFbUser: options => dispatch(getFbUserAction(options)),
+		beginLoading: options => dispatch(beginLoadingAction()),
+		stopLoading: options => dispatch(stopLoadingAction())
 	})
 )(SignIn);

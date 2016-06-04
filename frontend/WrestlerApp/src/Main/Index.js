@@ -42,7 +42,8 @@ class MainClass extends Component {
 		if (this.state.loading) {
 			return null;
 		}
-		var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
+		// var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
+		var initialRoute = 'SignIn';
 
 		return (
 			<Navigator

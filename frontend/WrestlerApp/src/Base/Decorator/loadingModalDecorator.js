@@ -24,9 +24,9 @@ export default function (DecoratedComponent) {
 		};
 
 		renderLoading() {
-			// if (true) {
-			// 	return null;
-			// }
+			if (!this.props.showLoadingModal) {
+				return null;
+			}
 
 			return (
 				<View>
@@ -51,8 +51,8 @@ export default function (DecoratedComponent) {
 
 	return connect (
 		state => ({
-			loading: state.loading
-		}),
+			showLoadingModal: state.showLoadingModal
+		})
 	)(LoadingModalWrapper);
 }
 
