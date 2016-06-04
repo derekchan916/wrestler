@@ -12,13 +12,13 @@ export default function loadingModalReducer (state = initialState, action) {
 		case beginLoading.ACTION:
 			return {
 				...state,
-				showLoadingModal: true,
+				showLoadingModal: true
 			};
 		case stopLoading.ACTION:
 			return {
 				...state,
 				showLoadingModal: false
-			}
+			};
 		default:
 			return state;
 

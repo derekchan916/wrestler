@@ -11,11 +11,10 @@ import { connect } from 'react-redux';
 
 // import Welcome from '../Authentication/Components/Welcome';
 import setUserAction from '../User/ActionCreator/setUserAction';
-import loadingModalDecorator from '../Base/Decorator/loadingModalDecorator';
+import loaderDecorator from '../Base/Decorator/loaderDecorator';
 import MainBar from './MainBar';
 import SignIn from '../User/Components/SignIn';
 
-// @loadingDecorator
 var ROUTES = {
 	SignIn  : SignIn,
 	// Welcome : Welcome,
@@ -42,8 +41,7 @@ class MainClass extends Component {
 		if (this.state.loading) {
 			return null;
 		}
-		// var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
-		var initialRoute = 'SignIn';
+		var initialRoute = this.props.user.data ? 'MainBar' : 'SignIn';
 
 		return (
 			<Navigator
@@ -75,7 +73,7 @@ const styles = StyleSheet.create({
 })
 var MainClassComponent;
 
-MainClassComponent = loadingModalDecorator(MainClass) || MainClass;
+MainClassComponent = loaderDecorator(MainClass) || MainClass;
 MainClassComponent = connect (
 	state => ({
 		user: state.user
