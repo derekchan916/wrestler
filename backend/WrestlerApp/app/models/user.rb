@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	validates :fname, :fb_id, presence: true
+	validates :fname, :fb_id, :wins, :losses, presence: true
 	validates :fb_id, uniqueness: true
 
 	before_validation :ensure_profile_image
