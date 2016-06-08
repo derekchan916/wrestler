@@ -25,17 +25,13 @@ const {
 class SignIn extends Component {
 	constructor(props) {
 		super(props);
-		// this.state = {
-		// 	loading: false
-		// };
 	}
 
 	componentWillReceiveProps (nextProps) {
 		if (!nextProps.user.loading && nextProps.user.data) {
 			this.saveData(JSON.stringify(nextProps.user.data));
 			this.goToMainBarScreen();
-			// this.toggleLoading();
-			// this.props.stopLoading();
+			this.props.stopLoading();
 		}
 	}
 
@@ -51,7 +47,7 @@ class SignIn extends Component {
 							} else if (result.isCancelled) {
 								alert("login is cancelled.");
 							} else {
-								// this.props.beginLoading();
+								this.props.beginLoading();
 								this.getAccessToken();
 							}
 						}}
@@ -61,11 +57,7 @@ class SignIn extends Component {
 			</View>
 		);
 	}
-
-	// toggleLoading() {
-	// 	this.setState({ loading: !this.state.loading })
-	// }
-
+	
 	getAccessToken() {
 		AccessToken.getCurrentAccessToken()
 			.then((token) => {

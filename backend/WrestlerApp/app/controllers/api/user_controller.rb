@@ -13,8 +13,11 @@ class Api::UserController < ApplicationController
 
 	def create
 		@user = User.find_by(fb_id: user_params[:fb_id])
+
 		unless @user
+			user_params["profile_image"] ||= "missing.png"
 			@user = User.new(user_params)
+
 			unless @user.save
 				@errors = @user.errors.full_messages
 				render "api/shared/error", status: 422
@@ -26,6 +29,13 @@ class Api::UserController < ApplicationController
 	end
 
 	def update
+		@user = User.find_by(fb_id: user_params[:fb_id])
+
+		if @user.update_attributes(user_params)
+			render "api/user/show"
+		else
+			render json: @user.errors.full_messages, status: :unprocessable_entity
+		end
 	end
 
 	def destroy
@@ -34,6 +44,6 @@ class Api::UserController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:fname, :lname, :fb_id, :images, :email)
+		params.require(:user).permit(:fname, :lname, :fb_id, :images, :email, :profile_image)
 	end
 end
