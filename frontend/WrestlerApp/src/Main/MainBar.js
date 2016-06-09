@@ -16,7 +16,7 @@ class MainBar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selected: 'Chat',
+			selected: 'Profile',
 		}
 	}
 

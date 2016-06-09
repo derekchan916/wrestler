@@ -24,21 +24,23 @@ class ProfileTab extends Component {
 				title={TabName}
 				selected={this.props.selected === TabName}
 				onPress={() => {this.props.setSelectedTabCb(TabName)}}>
-				<View style={[styles.tabContent, {backgroundColor: '#414A8C'}]}>
-					<TouchableHighlight
-						style={styles.tabButton}
-						underlayColor='white'
-						onPress={() => this.goToEditProfileScreen()}
-						>
-						<Text>BOO</Text>
-					</TouchableHighlight>
+				<View style={styles.container}>
+					<View style={styles.headerWrapper}>
+						<Text style={styles.userName}>Shoelaceking</Text>
+					</View>
 				</View>
 	        </TabBarIOS.Item>
 	    );
 	}
+	// <TouchableHighlight
+	// 	style={styles.tabButton}
+	// 	underlayColor='white'
+	// 	onPress={() => this.goToEditProfileScreen()}
+	// 	>
+	// 	<Text>BOO</Text>
+	// </TouchableHighlight>
 
 	goToEditProfileScreen() {
-		console.log('This was pressed')
 		this.props.navigator.push({name: 'EditProfile'});
 	}
 
@@ -49,14 +51,21 @@ class ProfileTab extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		justifyContent: 'center',
-		alignItems: 'center',
+		flexDirection: 'row',
 		flex: 1,
 	},
-	tabContent: {
+	headerWrapper: {
+		flexDirection: 'row',
+		justifyContent: 'center',
 		flex: 1,
-		alignItems: 'center',
+		backgroundColor: '#CCCCCC',
+		borderColor: 'red',
+		borderBottomWidth: 1,
+		height: 50,
     },
+	userName: {
+		backgroundColor: 'blue',
+	},
     tabButton: {
 		width: 100,
 		height: 100,
