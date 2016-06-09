@@ -38,16 +38,18 @@ class MainBar extends Component {
 				barTintColor='#333333'>
 				<ProfileTab
 					selected={this.state.selected}
+					route={this.props.route}
+					navigator={this.props.navigator}
 					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
-				/>
+					/>
 				<ChatTab
 					selected={this.state.selected}
 					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
-				/>
+					/>
 				<HomeTab
 					selected={this.state.selected}
 					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
-			/>
+					/>
 			</TabBarIOS>
 	    );
 	}

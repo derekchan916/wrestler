@@ -9,11 +9,11 @@ import React, {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import getFbUserAction from '../ActionCreator/getFbUserAction';
-import beginLoadingAction from '../../Base/ActionCreator/beginLoadingAction';
-import stopLoadingAction from '../../Base/ActionCreator/stopLoadingAction';
-import UserApi from '../DAO/UserApi';
-import LoadingModal from '../../Base/Components/LoadingModal';
+import getFbUserAction from '../../ActionCreator/getFbUserAction';
+import beginLoadingAction from '../../../Base/ActionCreator/beginLoadingAction';
+import stopLoadingAction from '../../../Base/ActionCreator/stopLoadingAction';
+import UserApi from '../../DAO/UserApi';
+import LoadingModal from '../../../Base/Components/LoadingModal';
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -57,7 +57,7 @@ class SignIn extends Component {
 			</View>
 		);
 	}
-	
+
 	getAccessToken() {
 		AccessToken.getCurrentAccessToken()
 			.then((token) => {
@@ -66,7 +66,7 @@ class SignIn extends Component {
 	}
 
 	goToMainBarScreen() {
-		this.props.navigator.immediatelyResetRouteStack([{ name: 'MainBar'}]);
+		this.props.navigator.immediatelyResetRouteStack([{name: 'MainBar'}]);
 	}
 
 	goToWelcomeScreen() {

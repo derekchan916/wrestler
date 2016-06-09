@@ -26,10 +26,7 @@ class HomeTab extends Component {
 	        <TabBarIOS.Item
 				title={TabName}
 				selected={this.props.selected === TabName}
-				onPress={() => {
-					this.props.setSelectedTabCb(TabName)
-				}}
-			>
+				onPress={() => {this.props.setSelectedTabCb(TabName)}}>
 				<View style={[styles.tabContent, {backgroundColor: '#21551C'}]}>
 					<Text style={styles.tabText}>re-renders of the Profile Page</Text>
 				</View>

@@ -5,6 +5,7 @@ import React, {
 	StyleSheet,
 	TabBarIOS,
 	Text,
+	TouchableHighlight,
 	View
 } from 'react-native';
 
@@ -12,31 +13,38 @@ import UserImages from '../../User/Components/UserImages';
 
 const TabName = "Profile";
 
-//Below components are under User folder
 class ProfileTab extends Component {
 	constructor(props) {
 		super(props);
-	};
+	}
 
 	render() {
 	    return (
 	        <TabBarIOS.Item
 				title={TabName}
 				selected={this.props.selected === TabName}
-				onPress={() => {
-					this.props.setSelectedTabCb(TabName)
-				}}
-			>
+				onPress={() => {this.props.setSelectedTabCb(TabName)}}>
 				<View style={[styles.tabContent, {backgroundColor: '#414A8C'}]}>
-					<UserImages />
+					<TouchableHighlight
+						style={styles.tabButton}
+						underlayColor='white'
+						onPress={() => this.goToEditProfileScreen()}
+						>
+						<Text>BOO</Text>
+					</TouchableHighlight>
 				</View>
 	        </TabBarIOS.Item>
 	    );
-	};
+	}
+
+	goToEditProfileScreen() {
+		console.log('This was pressed')
+		this.props.navigator.push({name: 'EditProfile'});
+	}
 
 	selectTab() {
 		this.props.setSelectedTabCb(TabName);
-	};
+	}
 }
 
 const styles = StyleSheet.create({
@@ -46,12 +54,14 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	tabContent: {
-      flex: 1,
-      alignItems: 'center',
+		flex: 1,
+		alignItems: 'center',
     },
-    tabText: {
-      color: 'white',
-      margin: 50,
+    tabButton: {
+		width: 100,
+		height: 100,
+		borderWidth: 2,
+		borderColor: 'red'
     },
 })
 
