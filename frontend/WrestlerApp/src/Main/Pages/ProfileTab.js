@@ -2,6 +2,7 @@
 
 import React, {
 	Component,
+	PixelRatio,
 	StyleSheet,
 	TabBarIOS,
 	Text,
@@ -29,19 +30,29 @@ class ProfileTab extends Component {
 						<Text style={styles.userName}>Shoelaceking</Text>
 					</View>
 					<View style={styles.contentWrapper}>
-						<Text>Container 2</Text>
+						<View style={styles.primaryContentContainer}>
+							<View style={[styles.image, styles.imageContainer]}>
+								<Text>+</Text>
+							</View>
+							<View style={styles.primaryContent}>
+								<View style={styles.winLoss}>
+									<Text>Wins</Text>
+									<Text>Loss</Text>
+								</View>
+								<TouchableHighlight
+									style={styles.tabButton}
+									underlayColor='white'
+									onPress={() => this.goToEditProfileScreen()}
+									>
+									<Text>Edit Profile</Text>
+								</TouchableHighlight>
+							</View>
+						</View>
 					</View>
 				</View>
 	        </TabBarIOS.Item>
 	    );
 	}
-	// <TouchableHighlight
-	// 	style={styles.tabButton}
-	// 	underlayColor='white'
-	// 	onPress={() => this.goToEditProfileScreen()}
-	// 	>
-	// 	<Text>BOO</Text>
-	// </TouchableHighlight>
 
 	goToEditProfileScreen() {
 		this.props.navigator.push({name: 'EditProfile'});
@@ -54,16 +65,12 @@ class ProfileTab extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'column',
 		flex: 1,
 	},
 	headerWrapper: {
-		height: 50,
-		flexDirection: 'column',
+		height: 60,
 		justifyContent: 'flex-end',
 		backgroundColor: '#CCCCCC',
-		borderColor: 'red',
-		borderBottomWidth: 1,
     },
 	userName: {
 		alignSelf: 'center',
@@ -71,13 +78,34 @@ const styles = StyleSheet.create({
 	},
 	contentWrapper: {
 		flex: 1,
-		height: 50,
+	},
+	primaryContentContainer: {
+		height: 130,
+		backgroundColor: 'blue',
+		flexDirection: 'row',
+	},
+	image: {
+		borderRadius: 50,
+		width: 100,
+		height: 100
+	},
+	imageContainer: {
+		borderColor: '#9B9B9B',
+		borderWidth: 1 / PixelRatio.get(),
+		justifyContent: 'center',
+		alignItems: 'center',
+		margin: 10,
+	},
+	primaryContent: {
+		justifyContent: 'center',
+		flex: 1,
+		alignItems: 'center',
+	},
+	winLoss: {
+		flexDirection: 'row',
 	},
     tabButton: {
-		width: 100,
-		height: 100,
-		borderWidth: 2,
-		borderColor: 'red'
+		backgroundColor: 'red',
     },
 })
 
