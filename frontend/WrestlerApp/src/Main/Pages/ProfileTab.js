@@ -28,6 +28,9 @@ class ProfileTab extends Component {
 					<View style={styles.headerWrapper}>
 						<Text style={styles.userName}>Shoelaceking</Text>
 					</View>
+					<View style={styles.contentWrapper}>
+						<Text>Container 2</Text>
+					</View>
 				</View>
 	        </TabBarIOS.Item>
 	    );
@@ -51,20 +54,24 @@ class ProfileTab extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'row',
+		flexDirection: 'column',
 		flex: 1,
 	},
 	headerWrapper: {
-		flexDirection: 'row',
-		justifyContent: 'center',
-		flex: 1,
+		height: 50,
+		flexDirection: 'column',
+		justifyContent: 'flex-end',
 		backgroundColor: '#CCCCCC',
 		borderColor: 'red',
 		borderBottomWidth: 1,
-		height: 50,
     },
 	userName: {
-		backgroundColor: 'blue',
+		alignSelf: 'center',
+		padding: 5,
+	},
+	contentWrapper: {
+		flex: 1,
+		height: 50,
 	},
     tabButton: {
 		width: 100,
