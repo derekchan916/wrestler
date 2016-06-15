@@ -84,6 +84,10 @@ class SignIn extends Component {
 	}
 };
 
+SignIn.propTypes = {
+	user : React.PropTypes.object
+}
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
