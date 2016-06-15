@@ -41,7 +41,6 @@ class ProfileTab extends Component {
 								</View>
 								<TouchableHighlight
 									style={styles.tabButton}
-									underlayColor='white'
 									onPress={() => this.goToEditProfileScreen()}
 									>
 									<Text>Edit Profile</Text>
@@ -80,32 +79,37 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	primaryContentContainer: {
-		height: 130,
-		backgroundColor: 'blue',
 		flexDirection: 'row',
 	},
 	image: {
 		borderRadius: 50,
-		width: 100,
-		height: 100
+		width: 80,
+		height: 80
 	},
 	imageContainer: {
 		borderColor: '#9B9B9B',
 		borderWidth: 1 / PixelRatio.get(),
 		justifyContent: 'center',
 		alignItems: 'center',
-		margin: 10,
+		marginHorizontal: 20,
+		marginVertical: 10,
 	},
 	primaryContent: {
-		justifyContent: 'center',
 		flex: 1,
-		alignItems: 'center',
+		margin: 10,
 	},
 	winLoss: {
+		flex: 1,
 		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'center',
 	},
     tabButton: {
-		backgroundColor: 'red',
+		backgroundColor: '#CCCCCC',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 2,
+		height: 25,
     },
 })
 
