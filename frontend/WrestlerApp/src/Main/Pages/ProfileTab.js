@@ -1,4 +1,4 @@
-'user strict'
+'use strict'
 
 import React, {
 	Component,
@@ -10,7 +10,9 @@ import React, {
 	View
 } from 'react-native';
 
+import Styles from '../../Base/Util/Styles';
 import UserImages from '../../User/Components/UserImages';
+import ProfileSummary from '../../User/Components/ProfileSummary';
 
 const TabName = "Profile";
 
@@ -20,6 +22,7 @@ class ProfileTab extends Component {
 	}
 
 	render() {
+		console.log(this.props);
 	    return (
 	        <TabBarIOS.Item
 				title={TabName}
@@ -27,26 +30,13 @@ class ProfileTab extends Component {
 				onPress={() => {this.props.setSelectedTabCb(TabName)}}>
 				<View style={styles.container}>
 					<View style={styles.headerWrapper}>
-						<Text style={styles.userName}>Shoelaceking</Text>
+						<Text style={styles.userName}>{this.props.user.data.fname}</Text>
 					</View>
 					<View style={styles.contentWrapper}>
-						<View style={styles.primaryContentContainer}>
-							<View style={[styles.image, styles.imageContainer]}>
-								<Text>+</Text>
-							</View>
-							<View style={styles.primaryContent}>
-								<View style={styles.winLoss}>
-									<Text>Wins</Text>
-									<Text>Loss</Text>
-								</View>
-								<TouchableHighlight
-									style={styles.tabButton}
-									onPress={() => this.goToEditProfileScreen()}
-									>
-									<Text>Edit Profile</Text>
-								</TouchableHighlight>
-							</View>
-						</View>
+						<ProfileSummary
+							user={this.props.user}
+							goToEditProfileScreen={() => this.goToEditProfileScreen()}
+							/>
 					</View>
 				</View>
 	        </TabBarIOS.Item>
@@ -60,7 +50,7 @@ class ProfileTab extends Component {
 	selectTab() {
 		this.props.setSelectedTabCb(TabName);
 	}
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -73,44 +63,18 @@ const styles = StyleSheet.create({
     },
 	userName: {
 		alignSelf: 'center',
-		padding: 5,
+		padding: Styles.smallGutter,
 	},
 	contentWrapper: {
 		flex: 1,
 	},
-	primaryContentContainer: {
-		flexDirection: 'row',
-	},
-	image: {
-		borderRadius: 50,
-		width: 80,
-		height: 80
-	},
-	imageContainer: {
-		borderColor: '#9B9B9B',
-		borderWidth: 1 / PixelRatio.get(),
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginHorizontal: 20,
-		marginVertical: 10,
-	},
-	primaryContent: {
-		flex: 1,
-		margin: 10,
-	},
-	winLoss: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		alignItems: 'center',
-	},
-    tabButton: {
-		backgroundColor: '#CCCCCC',
-		justifyContent: 'center',
-		alignItems: 'center',
-		borderRadius: 2,
-		height: 25,
-    },
-})
+});
+
+ProfileTab.propTypes = {
+	setSelectedTabCb : React.PropTypes.func,
+	user             : React.PropTypes.object,
+	route            : React.PropTypes.object,
+	selected         : React.PropTypes.string,
+};
 
 export default ProfileTab;

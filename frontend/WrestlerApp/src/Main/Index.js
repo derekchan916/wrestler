@@ -34,7 +34,7 @@ class MainClass extends Component {
 	componentDidMount() {
 	    AsyncStorage.getItem('user').then((value) => {
 			value = JSON.parse(value) || null;
-			this.props.setUser(value);
+			this.props.setUser(value); //Toggle this to not have async user data
 			this.toggleLoading();
 	    }).done();
 	}
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 })
+
 var MainClassComponent;
 
 MainClassComponent = loaderDecorator(MainClass) || MainClass;

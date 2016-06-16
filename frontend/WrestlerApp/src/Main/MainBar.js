@@ -1,4 +1,4 @@
-'user strict'
+'use strict'
 
 import React, {
 	Component,
@@ -7,6 +7,8 @@ import React, {
 	Text,
 	View
 } from 'react-native';
+import { connect } from 'react-redux';
+
 import ProfileTab from './Pages/ProfileTab';
 import ChatTab from './Pages/ChatTab';
 import HomeTab from './Pages/HomeTab';
@@ -37,6 +39,7 @@ class MainBar extends Component {
 				tintColor='white'
 				barTintColor='#333333'>
 				<ProfileTab
+					user={this.props.user}
 					selected={this.state.selected}
 					route={this.props.route}
 					navigator={this.props.navigator}
@@ -71,4 +74,13 @@ const styles = StyleSheet.create({
     },
 });
 
-export default MainBar;
+MainBar.propTypes = {
+	user             : React.PropTypes.object,
+	route            : React.PropTypes.object,
+}
+
+export default connect (
+	state => ({
+		user: state.user
+	})
+)(MainBar) || MainBar;
