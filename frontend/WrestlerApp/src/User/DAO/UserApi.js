@@ -7,8 +7,10 @@ const FB_API_URL = 'https://graph.facebook.com/v2.3';
 // var api = `https://graph.facebook.com/v2.3/${user.userId}/picture?width=${FB_PHOTO_WIDTH}&redirect=false&access_token=${user.token}`;
 
 class UserApi {
+	// First get the basic info info ex. first_name, last_name, email
 	static getUserFbInfo(options) {
 		var params = 'first_name,last_name,email';
+
 		return BaseApi.fetch({
 			url: `${FB_API_URL}/${options.userId}`,
 			method: 'GET',
@@ -17,13 +19,34 @@ class UserApi {
 				access_token: options.accessToken
 			},
 		})
-		.then(data => this.getUserData(data))
+		.then(data => this.getUserFbImage(data, options))
 		.catch((error) => {
 			console.warn('UserApi.getUserFbInfo', error)
 		})
 	}
 
-	static getUserData(data) {
+	// Then get the Fb image
+	// This needs to be optimized so we find the FbImage on getUserFbInfo
+	static getUserFbImage(data, options) {
+		var apiEndpoint = 'picture';
+
+		return BaseApi.fetch({
+			url: `${FB_API_URL}/${options.userId}/${apiEndpoint}`,
+			method: 'GET',
+			query: {
+				width: 200,
+				redirect: false,
+				access_token: options.accessToken
+			},
+		})
+		.then(imageData => this.getUserData(imageData, data))
+		.catch((error) => {
+			console.warn('UserApi.getUserFbImage', error)
+		})
+	}
+
+	// Then store in our database or retreave new user.
+	static getUserData(imageData, data) {
 		var apiEndpoint = 'user';
 		var body = {
 			user: {
@@ -31,6 +54,7 @@ class UserApi {
 				lname: data.last_name,
 				email: data.email,
 				fb_id: data.id,
+				profile_image: imageData.data.url,
 			}
 		};
 

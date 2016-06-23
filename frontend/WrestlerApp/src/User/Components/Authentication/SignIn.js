@@ -36,7 +36,6 @@ class SignIn extends Component {
 	}
 
 	render() {
-		console.log('WTF')
 		return (
 			<View style={styles.container}>
 				<View style={styles.fbContainer}>
