@@ -30,7 +30,7 @@ class MainClass extends Component {
 	componentDidMount() {
 	    AsyncStorage.getItem('user').then((value) => {
 			value = JSON.parse(value) || null;
-			// this.props.setUser(value); //Toggle this to not have async user data
+			this.props.setUser(value); //Toggle this to not have async user data
 			this.toggleLoading();
 	    }).done();
 	}

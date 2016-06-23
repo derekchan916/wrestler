@@ -14,7 +14,7 @@ class Api::UserController < ApplicationController
 	def create
 		@user = User.find_by(fb_id: user_params[:fb_id])
 
-		unless @user
+		if !@user
 			user_params["profile_image"] ||= "missing.png"
 			@user = User.new(user_params)
 
@@ -24,6 +24,11 @@ class Api::UserController < ApplicationController
 				return
 			end
 			@new_user = true
+		else
+
+			unless @user.update_attributes(user_params)
+				render json: @user.errors.full_messages, status: :unprocessable_entity
+			end
 		end
 		render "api/user/show"
 	end
