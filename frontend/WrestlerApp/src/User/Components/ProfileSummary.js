@@ -2,6 +2,7 @@
 
 import React, {
 	Component,
+	Image,
 	PixelRatio,
 	StyleSheet,
 	Text,
@@ -21,9 +22,10 @@ class ProfileSummary extends Component {
 
 		return (
 			<View style={styles.container}>
-				<View style={styles.image}>
-					<Text>+</Text>
-				</View>
+				<Image
+					style={styles.image}
+					source={{uri: user.profile_image}}
+					/>
 				<View style={styles.primaryContent}>
 					<View style={styles.winLoss}>
 						<View style={styles.winLossContent}>
@@ -46,9 +48,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	image: {
-		borderRadius: 50,
-		width: 80,
-		height: 80,
+		borderRadius: 45,
+		width: 90,
+		height: 90,
 		borderColor: '#9B9B9B',
 		borderWidth: 1 / PixelRatio.get(),
 		justifyContent: 'center',
