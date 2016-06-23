@@ -22,7 +22,6 @@ class ProfileTab extends Component {
 	}
 
 	render() {
-		console.log(this.props);
 	    return (
 	        <TabBarIOS.Item
 				title={TabName}
@@ -35,16 +34,11 @@ class ProfileTab extends Component {
 					<View style={styles.contentWrapper}>
 						<ProfileSummary
 							user={this.props.user}
-							goToEditProfileScreen={() => this.goToEditProfileScreen()}
 							/>
 					</View>
 				</View>
 	        </TabBarIOS.Item>
 	    );
-	}
-
-	goToEditProfileScreen() {
-		this.props.navigator.push({name: 'EditProfile'});
 	}
 
 	selectTab() {

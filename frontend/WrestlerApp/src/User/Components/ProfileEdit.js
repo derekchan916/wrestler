@@ -8,7 +8,7 @@ import React, {
 	View,
 } from 'react-native';
 
-class EditProfile extends Component {
+class ProfileEdit extends Component {
 	render() {
 		return (
 			<TouchableHighlight
@@ -35,4 +35,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default EditProfile;
+export default ProfileEdit;

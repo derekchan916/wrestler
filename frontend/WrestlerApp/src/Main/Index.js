@@ -9,18 +9,14 @@ import React, {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-// import Welcome from '../Authentication/Components/Welcome';
 import setUserAction from '../User/ActionCreator/setUserAction';
 import loaderDecorator from '../Base/Decorator/loaderDecorator';
 import MainBar from './MainBar';
 import SignIn from '../User/Components/Authentication/SignIn';
-import EditProfile from '../User/Components/EditProfile';
 
 const ROUTES = {
 	SignIn      : SignIn,
-	// Welcome : Welcome,
 	MainBar     : MainBar,
-	EditProfile : EditProfile
 }
 
 class MainClass extends Component {

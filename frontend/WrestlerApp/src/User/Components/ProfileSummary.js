@@ -35,12 +35,6 @@ class ProfileSummary extends Component {
 							<Text>Loss</Text>
 						</View>
 					</View>
-					<TouchableHighlight
-						style={styles.editButton}
-						onPress={() => this.props.goToEditProfileScreen()}
-						>
-						<Text>Edit Profile</Text>
-					</TouchableHighlight>
 				</View>
 			</View>
 		);
@@ -85,7 +79,6 @@ const styles = StyleSheet.create({
 });
 
 ProfileSummary.propTypes = {
-	goToEditProfileScreen : React.PropTypes.func,
 	user                  : React.PropTypes.object,
 }
 
