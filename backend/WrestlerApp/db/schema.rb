@@ -11,22 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608042616) do
+ActiveRecord::Schema.define(version: 20160625034832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "user_images", force: :cascade do |t|
+    t.integer  "user_id",          null: false
+    t.string   "url",              null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "order"
+    t.boolean  "is_profile_image"
+  end
+
+  add_index "user_images", ["user_id"], name: "index_user_images_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.string   "fname",                      null: false
+    t.string   "fname",                  null: false
     t.string   "lname"
-    t.string   "fb_id",                      null: false
-    t.string   "images",        default: [],              array: true
+    t.string   "fb_id",                  null: false
     t.string   "email"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "profile_image"
-    t.integer  "wins",          default: 0
-    t.integer  "losses",        default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "wins",       default: 0
+    t.integer  "losses",     default: 0
   end
 
   add_index "users", ["fb_id"], name: "index_users_on_fb_id", unique: true, using: :btree
