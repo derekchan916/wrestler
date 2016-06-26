@@ -15,7 +15,6 @@ class Api::UserController < ApplicationController
 		@user = User.find_by(fb_id: user_params[:fb_id])
 
 		if !@user
-			user_params["profile_image"] ||= "missing.png"
 			@user = User.new(user_params)
 
 			unless @user.save
@@ -23,6 +22,15 @@ class Api::UserController < ApplicationController
 				render "api/shared/error", status: 422
 				return
 			end
+
+			params["profile_image"] ||= "missing.png"
+			UserImage.create(
+				"user_id" => @user.id,
+				"url" => params["profile_image"],
+				"order" => 1,
+				"is_profile_image"=>true
+			)
+
 			@new_user = true
 		else
 
@@ -49,6 +57,6 @@ class Api::UserController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:fname, :lname, :fb_id, :images, :email, :profile_image, :wins, :losses)
+		params.require(:user).permit(:fname, :lname, :fb_id, :email, :profile_image, :wins, :losses)
 	end
 end
