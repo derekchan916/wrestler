@@ -27,6 +27,8 @@ class Api::UserController < ApplicationController
 			@new_user = true
 		else
 			if @user.update_attributes(user_params.except("profile_image"))
+				update_profile_image(@user)
+			else
 				render json: @user.errors.full_messages, status: :unprocessable_entity
 			end
 		end
@@ -65,5 +67,6 @@ class Api::UserController < ApplicationController
 	end
 
 	def update_profile_image(user)
+		user.profile_image.update_attributes("url" => params["user"]["profile_image"])
 	end
 end

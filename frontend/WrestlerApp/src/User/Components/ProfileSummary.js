@@ -19,7 +19,6 @@ class ProfileSummary extends Component {
 
 	render() {
 		var user = this.props.user.data;
-		console.log(user);
 
 		return (
 			<View style={styles.container}>
