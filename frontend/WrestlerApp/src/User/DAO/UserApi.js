@@ -65,7 +65,6 @@ class UserApi {
 		})
 		.then(data => {
 			//New users have an attribute data.new_user === true
-			console.log('FINAL DATA', data)
 			return data;
 		})
 		.catch((error) => {

@@ -23,32 +23,25 @@ class Api::UserController < ApplicationController
 				return
 			end
 
-			params["profile_image"] ||= "missing.png"
-			UserImage.create(
-				"user_id" => @user.id,
-				"url" => params["profile_image"],
-				"order" => 1,
-				"is_profile_image"=>true
-			)
-
+			save_profile_image(@user)
 			@new_user = true
 		else
-
 			unless @user.update_attributes(user_params)
 				render json: @user.errors.full_messages, status: :unprocessable_entity
 			end
 		end
+
 		render "api/user/show"
 	end
 
 	def update
-		@user = User.find_by(fb_id: user_params[:fb_id])
-
-		if @user.update_attributes(user_params)
-			render "api/user/show"
-		else
-			render json: @user.errors.full_messages, status: :unprocessable_entity
-		end
+		# @user = User.find_by(fb_id: user_params[:fb_id])
+		#
+		# if @user.update_attributes(user_params)
+		# 	render "api/user/show"
+		# else
+		# 	render json: @user.errors.full_messages, status: :unprocessable_entity
+		# end
 	end
 
 	def destroy
@@ -58,5 +51,16 @@ class Api::UserController < ApplicationController
 
 	def user_params
 		params.require(:user).permit(:fname, :lname, :fb_id, :email, :profile_image, :wins, :losses)
+	end
+
+	def save_profile_image(user)
+		params["profile_image"] ||= "missing.png"
+		
+		UserImage.create(
+			"user_id" => user.id,
+			"url" => params["profile_image"],
+			"order" => 1,
+			"is_profile_image"=>true
+		)
 	end
 end
