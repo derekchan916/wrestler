@@ -19,12 +19,13 @@ class ProfileSummary extends Component {
 
 	render() {
 		var user = this.props.user.data;
+		console.log(user);
 
 		return (
 			<View style={styles.container}>
 				<Image
 					style={styles.image}
-					source={{uri: user.profile_image}}
+					source={{uri: user.profile_image.url}}
 					/>
 				<View style={styles.primaryContent}>
 					<View style={styles.winLoss}>

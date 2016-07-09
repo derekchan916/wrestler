@@ -15,7 +15,7 @@ class Api::UserController < ApplicationController
 		@user = User.find_by(fb_id: user_params[:fb_id])
 
 		if !@user
-			@user = User.new(user_params)
+			@user = User.new(user_params.except("profile_image"))
 
 			unless @user.save
 				@errors = @user.errors.full_messages
@@ -26,7 +26,7 @@ class Api::UserController < ApplicationController
 			save_profile_image(@user)
 			@new_user = true
 		else
-			unless @user.update_attributes(user_params)
+			if @user.update_attributes(user_params.except("profile_image"))
 				render json: @user.errors.full_messages, status: :unprocessable_entity
 			end
 		end
@@ -54,13 +54,16 @@ class Api::UserController < ApplicationController
 	end
 
 	def save_profile_image(user)
-		params["profile_image"] ||= "missing.png"
-		
+		params["user"]["profile_image"] ||= "missing.png"
+
 		UserImage.create(
 			"user_id" => user.id,
-			"url" => params["profile_image"],
+			"url" => params["user"]["profile_image"],
 			"order" => 1,
 			"is_profile_image"=>true
 		)
+	end
+
+	def update_profile_image(user)
 	end
 end
