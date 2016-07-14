@@ -13,7 +13,7 @@ import MainBar from './MainBar';
 import SignIn from '../User/Components/Authentication/SignIn';
 import setUserAction from '../User/ActionCreator/setUserAction';
 import loaderDecorator from '../Base/Decorator/loaderDecorator';
-import UserApi from '../../DAO/UserApi';
+import UserApi from '../User/DAO/UserApi';
 
 const ROUTES = {
 	SignIn      : SignIn,
@@ -39,7 +39,7 @@ class MainClass extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.user.data) {
-			loadFriendsList(nextProps.user.data);
+			this.loadFriendsList(nextProps.user.data);
 		}
 	}
 

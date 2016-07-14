@@ -39,14 +39,14 @@ class UserApi {
 				access_token: options.accessToken
 			},
 		})
-		.then(imageData => this.getUserData(imageData, data))
+		.then(imageData => this.getUserData(imageData, data, options.accessToken))
 		.catch((error) => {
 			console.warn('UserApi.getUserFbImage', error)
 		})
 	}
 
 	// Then store in our database or retreave new user.
-	static getUserData(imageData, data) {
+	static getUserData(imageData, data, accessToken) {
 		var apiEndpoint = 'user';
 		var body = {
 			user: {
@@ -55,6 +55,7 @@ class UserApi {
 				email: data.email,
 				fb_id: data.id,
 				profile_image: imageData.data.url,
+				fb_access_token: accessToken,
 			}
 		};
 
