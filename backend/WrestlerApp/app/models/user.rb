@@ -1,7 +1,7 @@
 require 'byebug'
 
 class User < ActiveRecord::Base
-	validates :fname, :fb_id, :wins, :losses, presence: true
+	validates :fname, :fb_id, :wins, :losses, :fb_access_token, presence: true
 	validates :fb_id, uniqueness: true
 
 	has_many :images, -> { order(:order) }, class_name: 'UserImage', foreign_key: :user_id
