@@ -32,7 +32,7 @@ class MainClass extends Component {
 	componentDidMount() {
 	    AsyncStorage.getItem('user').then((value) => {
 			value = JSON.parse(value) || null;
-			// this.props.setUser(value); //Toggle this to not have async user data
+			this.props.setUser(value); //Toggle this to not have async user data
 			this.toggleLoading();
 	    }).done();
 	}
@@ -68,11 +68,10 @@ class MainClass extends Component {
 	}
 
 	loadFriendsList(userData) {
-		console.log(userData);
-		// UserApi.getFbFriendsList({
-		// 	userId: userData.userId,
-		// 	accessToken: userData.accessToken,
-		// })
+		UserApi.getFbFriendsList({
+			userId: userData.fb_id,
+			accessToken: userData.fb_access_token,
+		})
 	}
 
 	toggleLoading() {

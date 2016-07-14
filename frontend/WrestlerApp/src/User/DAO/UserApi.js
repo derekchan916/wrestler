@@ -65,7 +65,6 @@ class UserApi {
 			body: body,
 		})
 		.then(data => {
-			console.log(data);
 			//New users have an attribute data.new_user === true
 			return data;
 		})
@@ -85,7 +84,10 @@ class UserApi {
 				access_token: options.accessToken
 			},
 		})
-		.then(friendsList => friendsList)
+		.then(friendsList => {
+			console.log('WHO ARE MY FRIENDS', friendsList);
+			return friendsList;
+		})
 		.catch((error) => {
 			console.warn('UserApi.getUserFbImage', error)
 		})
