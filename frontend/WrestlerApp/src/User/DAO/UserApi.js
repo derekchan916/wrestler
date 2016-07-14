@@ -71,6 +71,22 @@ class UserApi {
 			console.warn('UserApi.getUserData', error)
 		})
 	}
+
+	static getFbFriendsList(options) {
+		var apiEndpoint = 'friendlists';
+
+		return BaseApi.fetch({
+			url: `${FB_API_URL}/${options.userId}/${apiEndpoint}`,
+			method: 'GET',
+			query: {
+				access_token: options.accessToken
+			},
+		})
+		.then(friendsList => friendsList)
+		.catch((error) => {
+			console.warn('UserApi.getUserFbImage', error)
+		})
+	}
 };
 
 export default UserApi;
