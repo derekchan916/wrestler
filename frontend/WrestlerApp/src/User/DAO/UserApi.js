@@ -47,6 +47,7 @@ class UserApi {
 
 	// Then store in our database or retreave new user.
 	static getUserData(imageData, data, accessToken) {
+		console.log('THE TOKEN HERE', accessToken)
 		var apiEndpoint = 'user';
 		var body = {
 			user: {

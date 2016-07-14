@@ -52,7 +52,7 @@ class Api::UserController < ApplicationController
 	private
 
 	def user_params
-		params.require(:user).permit(:fname, :lname, :fb_id, :email, :profile_image, :wins, :losses)
+		params.require(:user).permit(:fname, :lname, :fb_id, :email, :profile_image, :wins, :losses, :fb_access_token)
 	end
 
 	def save_profile_image(user)
