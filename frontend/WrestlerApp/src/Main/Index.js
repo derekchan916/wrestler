@@ -9,10 +9,11 @@ import React, {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import setUserAction from '../User/ActionCreator/setUserAction';
-import loaderDecorator from '../Base/Decorator/loaderDecorator';
 import MainBar from './MainBar';
 import SignIn from '../User/Components/Authentication/SignIn';
+import setUserAction from '../User/ActionCreator/setUserAction';
+import loaderDecorator from '../Base/Decorator/loaderDecorator';
+import UserApi from '../../DAO/UserApi';
 
 const ROUTES = {
 	SignIn      : SignIn,
@@ -24,15 +25,22 @@ class MainClass extends Component {
 		super(props);
 		this.state = {
 			loading: true,
+			loadedFriendsList: false,
 		};
 	}
 
 	componentDidMount() {
 	    AsyncStorage.getItem('user').then((value) => {
 			value = JSON.parse(value) || null;
-			// this.props.setUser(value); //Toggle this to not have async user data
+			this.props.setUser(value); //Toggle this to not have async user data
 			this.toggleLoading();
 	    }).done();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.user.data) {
+			loadFriendsList(nextProps.user.data);
+		}
 	}
 
 	render() {
@@ -57,6 +65,14 @@ class MainClass extends Component {
 				route={route}
 				navigator={navigator}/>
 		);
+	}
+
+	loadFriendsList(userData) {
+		console.log(userData);
+		// UserApi.getFbFriendsList({
+		// 	userId: userData.userId,
+		// 	accessToken: userData.accessToken,
+		// })
 	}
 
 	toggleLoading() {

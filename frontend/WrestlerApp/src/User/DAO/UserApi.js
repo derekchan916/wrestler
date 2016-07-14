@@ -72,6 +72,7 @@ class UserApi {
 		})
 	}
 
+	//https://developers.facebook.com/docs/graph-api/reference/friend-list/
 	static getFbFriendsList(options) {
 		var apiEndpoint = 'friendlists';
 
