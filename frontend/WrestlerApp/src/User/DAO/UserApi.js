@@ -73,6 +73,8 @@ class UserApi {
 		})
 	}
 
+	// UNABLE TO USE THIS UNTIL WE HAVE PERMISSION FROM FACEBOOK
+	// In SignIn.js, add "read_custom_friendlists" to readPermissions.
 	//https://developers.facebook.com/docs/graph-api/reference/friend-list/
 	static getFbFriendsList(options) {
 		var apiEndpoint = 'friendlists';
@@ -85,7 +87,6 @@ class UserApi {
 			},
 		})
 		.then(friendsList => {
-			console.log('WHO ARE MY FRIENDS', friendsList);
 			return friendsList;
 		})
 		.catch((error) => {

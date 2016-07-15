@@ -32,15 +32,9 @@ class MainClass extends Component {
 	componentDidMount() {
 	    AsyncStorage.getItem('user').then((value) => {
 			value = JSON.parse(value) || null;
-			this.props.setUser(value); //Toggle this to not have async user data
+			// this.props.setUser(value); //Toggle this to not have async user data
 			this.toggleLoading();
 	    }).done();
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.user.data) {
-			this.loadFriendsList(nextProps.user.data);
-		}
 	}
 
 	render() {
@@ -67,12 +61,13 @@ class MainClass extends Component {
 		);
 	}
 
-	loadFriendsList(userData) {
-		UserApi.getFbFriendsList({
-			userId: userData.fb_id,
-			accessToken: userData.fb_access_token,
-		})
-	}
+	// UNABLE TO LOAD THIS UNTIL WE HAVE PERMISSION FROM FACEBOOK
+	// loadFriendsList(userData) {
+	// 	UserApi.getFbFriendsList({
+	// 		userId: userData.fb_id,
+	// 		accessToken: userData.fb_access_token,
+	// 	})
+	// }
 
 	toggleLoading() {
 		this.setState({ loading: !this.state.loading })
