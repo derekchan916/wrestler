@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721021612) do
+ActiveRecord::Schema.define(version: 20160721025657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20160721021612) do
     t.integer  "loss",        default: 0, null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.integer  "match_id",                   null: false
+    t.integer  "times_seen", default: 0,     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "accepted",   default: false, null: false
+    t.boolean  "declined",   default: false, null: false
   end
 
   create_table "user_images", force: :cascade do |t|
