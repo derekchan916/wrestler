@@ -53,3 +53,6 @@ users.each do |user|
 		is_profile_image: true
 	)
 end
+
+# Create matches for fights
+Fight.create!({'user_id'=>47, 'opponent_id'=>48})
