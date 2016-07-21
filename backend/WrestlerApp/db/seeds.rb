@@ -10,6 +10,7 @@
 User.destroy_all
 UserImage.destroy_all
 
+# Create Data
 users = [
 	{
 		"fname" => "Charmander",

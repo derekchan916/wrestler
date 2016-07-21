@@ -6,3 +6,7 @@ in postman
     "fb_id" : "10154237301715854",
     "fname" : "Derek"
 }
+
+run $rails g model Todo
+run $rake db:migrate
+run $rails g controller Todos
