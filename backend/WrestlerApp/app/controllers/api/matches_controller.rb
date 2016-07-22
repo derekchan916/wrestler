@@ -1,13 +1,14 @@
+require 'byebug'
+
 class Api::MatchesController < ApplicationController
 
 	def show
-		@users = Users.all
+		@users = User.find(params[:id])
+					.matches.where(times_seen: 0)
+					.limit(params[:count])
+					.order("RANDOM()")
 		render "api/user/index"
 	end
 
 	private
-
-	def user_params
-		params.require(:match).permit(:user_id, :count)
-	end
 end
