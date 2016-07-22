@@ -10,3 +10,20 @@ in postman
 run $rails g model Todo
 run $rake db:migrate
 run $rails g controller Todos
+
+To access database type
+rails db
+
+SELECT users.fname, matches.user_id, matches.match_id, opponents.fname AS opponent
+FROM users
+JOIN matches
+ON matches.user_id = users.id
+JOIN users AS opponents
+ON opponents.id = matches.match_id;
+
+SELECT users.fname, matches.user_id, matches.match_id, opponents.fname AS opponent FROM users
+FULL OUTER JOIN matches
+ON matches.user_id = users.id
+FULL OUTER JOIN users AS opponents
+ON opponents.id = matches.match_id
+WHERE users.id = 47;
