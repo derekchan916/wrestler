@@ -55,4 +55,5 @@ users.each do |user|
 end
 
 # Create matches for fights
-Fight.create!({'user_id'=>47, 'opponent_id'=>48})
+Match.create!({'user_id'=>47, 'match_id'=>48})
+Match.create!({'user_id'=>48, 'match_id'=>49})

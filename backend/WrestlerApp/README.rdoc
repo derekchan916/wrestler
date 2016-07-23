@@ -14,16 +14,31 @@ run $rails g controller Todos
 To access database type
 rails db
 
-SELECT users.fname, matches.user_id, matches.match_id, opponents.fname AS opponent
+SELECT users.fname, users.id,
+	matches.user_id, matches.match_id,
+	opponents.fname AS opponent_fname
 FROM users
 JOIN matches
 ON matches.user_id = users.id
 JOIN users AS opponents
 ON opponents.id = matches.match_id;
 
-SELECT users.fname, matches.user_id, matches.match_id, opponents.fname AS opponent FROM users
-FULL OUTER JOIN matches
+SELECT users.fname, users.id, matches.user_id, matches.match_id, opponents.fname AS opponent
+FROM users
+LEFT OUTER JOIN matches
 ON matches.user_id = users.id
-FULL OUTER JOIN users AS opponents
+LEFT OUTER JOIN users AS opponents
+ON opponents.id = matches.match_id
+WHERE opponents.id IS NULL;
+
+SELECT users.fname, users.id, opponents.fname AS opponent_fname
+FROM users, users AS opponents
+WHERE users.id = 47;
+
+SELECT users.fname, users.id, matches.user_id, matches.match_id, opponents.fname AS opponent
+FROM users
+JOIN matches
+ON matches.user_id <> users.id
+JOIN users AS opponents
 ON opponents.id = matches.match_id
 WHERE users.id = 47;
