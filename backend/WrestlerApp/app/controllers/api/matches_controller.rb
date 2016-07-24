@@ -13,8 +13,8 @@ class Api::MatchesController < ApplicationController
 			ORDER BY RANDOM()
 			LIMIT 5;"
 
-		@users = User.all
-		# @users = ActiveRecord::Base.connection.execute(query)
+		# @users = User.all
+		@users = ActiveRecord::Base.connection.execute(query)
 		render "api/user/index"
 	end
 
