@@ -2,7 +2,7 @@ require 'byebug'
 
 class Api::UserController < ApplicationController
 	def index
-		@user = User.all
+		@users = User.all
 		render "api/user/index"
 	end
 

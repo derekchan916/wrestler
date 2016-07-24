@@ -14,31 +14,12 @@ run $rails g controller Todos
 To access database type
 rails db
 
-SELECT users.fname, users.id,
-	matches.user_id, matches.match_id,
-	opponents.fname AS opponent_fname
-FROM users
-JOIN matches
-ON matches.user_id = users.id
-JOIN users AS opponents
-ON opponents.id = matches.match_id;
-
-SELECT users.fname, users.id, matches.user_id, matches.match_id, opponents.fname AS opponent
-FROM users
-LEFT OUTER JOIN matches
-ON matches.user_id = users.id
-LEFT OUTER JOIN users AS opponents
-ON opponents.id = matches.match_id
-WHERE opponents.id IS NULL;
-
-SELECT users.fname, users.id, opponents.fname AS opponent_fname
-FROM users, users AS opponents
-WHERE users.id = 47;
-
-SELECT users.fname, users.id, matches.user_id, matches.match_id, opponents.fname AS opponent
-FROM users
-JOIN matches
-ON matches.user_id <> users.id
-JOIN users AS opponents
-ON opponents.id = matches.match_id
-WHERE users.id = 47;
+SELECT users_sec.*
+FROM users AS users_prime
+JOIN users AS users_sec ON users_prime.id != users_sec.id
+LEFT OUTER JOIN matches ON users_prime.id = matches.user_id
+WHERE (matches.user_id IS NULL
+OR users_sec.id != matches.match_id)
+AND users_prime.id = 47
+ORDER BY RANDOM()
+LIMIT 5;
