@@ -1,10 +1,12 @@
 'use strict';
 
+import getUserMatchesAction from '../ActionCreate/getUserMatchesAction';
+
 const initialState = {
 	loading : false,
 	data    : null,
 	error   : null
-}
+};
 
 export default function matchReducer (state = initialState, action) {
 	switch (action.type) {
