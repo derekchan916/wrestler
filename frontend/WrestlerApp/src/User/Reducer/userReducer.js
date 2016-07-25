@@ -1,12 +1,12 @@
-'use strict'
+'use strict';
 
 import getFbUserAction from '../ActionCreator/getFbUserAction';
 import setUserAction from '../ActionCreator/setUserAction';
 
 const initialState = {
-	loading: false,
-	data:    null,
-	error:   null,
+	loading : false,
+	data    : null,
+	error   : null,
 };
 
 export default function userReducer (state = initialState, action) {
