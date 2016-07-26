@@ -6,7 +6,7 @@ const LOCAL_API = 'http://localhost:3000/api';
 
 class MatchApi {
 	static getUserMatches(options) {
-		var apiEndpoint = 'match'
+		var apiEndpoint = 'matches'
 
 		return BaseApi.fetch({
 			url: `${LOCAL_API}/${apiEndpoint}/${options.userId}`,

@@ -18,18 +18,28 @@ const TabName = "Match";
 class MatchTab extends Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			matches: null,
+		};
 	};
 
 	componentWillMount() {
 		this.getMatches(this.props);
 	};
 
+	componentWillReceiveProps(nextProps) {
+		if (!this.state.matches && !nextProps.match.loading) {
+			this.setState({
+				matches: nextProps.match.data
+			});
+		}
+	};
+
 	getMatches(props) {
-		// props.getUserMatchesAction({
-		// 	count: 1,
-		//
-		// });
-		console.log(props);
+		props.getUserMatchesAction({
+			userId: props.user.data.id,
+			count: 3,
+		});
 	};
 
 	render() {
