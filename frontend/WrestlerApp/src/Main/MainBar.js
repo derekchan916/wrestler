@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 import ProfileTab from './Pages/ProfileTab';
 import ChatTab from './Pages/ChatTab';
-import HomeTab from './Pages/HomeTab';
+import MatchTab from './Pages/MatchTab';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 class MainBar extends Component {
@@ -49,7 +49,7 @@ class MainBar extends Component {
 					selected={this.state.selected}
 					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
 					/>
-				<HomeTab
+				<MatchTab
 					selected={this.state.selected}
 					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
 					/>

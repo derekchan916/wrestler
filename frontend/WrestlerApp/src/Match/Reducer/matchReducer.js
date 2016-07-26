@@ -1,6 +1,6 @@
 'use strict';
 
-import getUserMatchesAction from '../ActionCreate/getUserMatchesAction';
+import getUserMatchesAction from '../ActionCreator/getUserMatchesAction';
 
 const initialState = {
 	loading : false,

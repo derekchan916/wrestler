@@ -12,11 +12,13 @@ import thunk from 'redux-thunk';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 // Reducers
-import userReducer from './User/Reducer/userReducer'
-import loaderReducer from './Base/Reducer/loaderReducer'
+import loaderReducer from './Base/Reducer/loaderReducer';
+import userReducer from './User/Reducer/userReducer';
+import matchReducer from './Match/Reducer/matchReducer';
 const appStoreReducers = combineReducers({
+	loader : loaderReducer,
 	user   : userReducer,
-	loader : loaderReducer
+	match  : matchReducer
 });
 
 // Store
