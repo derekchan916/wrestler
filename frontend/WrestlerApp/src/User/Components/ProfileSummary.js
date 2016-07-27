@@ -82,6 +82,6 @@ const styles = StyleSheet.create({
 
 ProfileSummary.propTypes = {
 	user                  : React.PropTypes.object,
-}
+};
 
 export default ProfileSummary;

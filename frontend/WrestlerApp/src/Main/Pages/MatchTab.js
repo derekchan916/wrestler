@@ -14,6 +14,8 @@ import getUserMatchesAction from '../../Match/ActionCreator/getUserMatchesAction
 import beginLoadingAction from '../../Base/ActionCreator/beginLoadingAction';
 import stopLoadingAction from '../../Base/ActionCreator/stopLoadingAction';
 
+import MatchList from '../../Match/Components/MatchList';
+
 const TabName = "Match";
 
 class MatchTab extends Component {
@@ -25,12 +27,11 @@ class MatchTab extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log('GEGEGEG');
-		if (!this.state.matches && !nextProps.match.loading) {
+		if (!this.state.matches && !nextProps.match.loading && nextProps.match.data) {
 			this.setState({
 				matches: nextProps.match.data
 			});
-			console.log(this.state.matches)
+			this.props.stopLoading();
 		}
 	}
 
@@ -47,32 +48,29 @@ class MatchTab extends Component {
 				title={TabName}
 				selected={this.props.selected === TabName}
 				onPress={() => this.onMatchTabPress()}>
-				<View style={[styles.tabContent, {backgroundColor: '#21551C'}]}>
-					<Text style={styles.tabText}>re-renders of the Match Page</Text>
+				<View style={[styles.tabContent]}>
+					<MatchList />
 				</View>
 	        </TabBarIOS.Item>
 	    );
 	}
 
 	onMatchTabPress() {
-		this.props.setSelectedTabCb(TabName);
 		this.getMatches(this.props);
+		this.props.setSelectedTabCb(TabName);
+		if (!this.state.matches) {
+			this.props.beginLoading();
+		}
 	}
 }
 
 const styles = StyleSheet.create({
-	container: {
+	tabContent: {
+		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		flex: 1,
-	},
-	tabContent: {
-      flex: 1,
-      alignItems: 'center',
-    },
-    tabText: {
-      color: 'white',
-      margin: 50,
+		borderColor: 'blue',
+		borderWidth: 5,
     },
 })
 
