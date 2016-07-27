@@ -2,6 +2,7 @@
 
 import React, {
 	Component,
+	PropTypes,
 	StyleSheet,
 	TabBarIOS,
 	Text,
@@ -21,43 +22,42 @@ class MatchTab extends Component {
 		this.state = {
 			matches: null,
 		};
-	};
-
-	componentWillMount() {
-		this.getMatches(this.props);
-	};
+	}
 
 	componentWillReceiveProps(nextProps) {
+		console.log('GEGEGEG');
 		if (!this.state.matches && !nextProps.match.loading) {
 			this.setState({
 				matches: nextProps.match.data
 			});
+			console.log(this.state.matches)
 		}
-	};
+	}
 
 	getMatches(props) {
 		props.getUserMatchesAction({
 			userId: props.user.data.id,
 			count: 3,
 		});
-	};
+	}
 
 	render() {
 	    return (
 	        <TabBarIOS.Item
 				title={TabName}
 				selected={this.props.selected === TabName}
-				onPress={() => {this.props.setSelectedTabCb(TabName)}}>
+				onPress={() => this.onMatchTabPress()}>
 				<View style={[styles.tabContent, {backgroundColor: '#21551C'}]}>
 					<Text style={styles.tabText}>re-renders of the Match Page</Text>
 				</View>
 	        </TabBarIOS.Item>
 	    );
-	};
+	}
 
-	selectTab() {
+	onMatchTabPress() {
 		this.props.setSelectedTabCb(TabName);
-	};
+		this.getMatches(this.props);
+	}
 }
 
 const styles = StyleSheet.create({
@@ -75,6 +75,11 @@ const styles = StyleSheet.create({
       margin: 50,
     },
 })
+
+MatchTab.propTypes = {
+	selected      : PropTypes.string,
+	loadMatchData : PropTypes.bool,
+}
 
 export default connect (
 	state => ({

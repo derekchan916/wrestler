@@ -40,10 +40,6 @@ class ProfileTab extends Component {
 	        </TabBarIOS.Item>
 	    );
 	}
-
-	selectTab() {
-		this.props.setSelectedTabCb(TabName);
-	}
 };
 
 const styles = StyleSheet.create({

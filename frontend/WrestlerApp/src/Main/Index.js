@@ -25,7 +25,6 @@ class MainClass extends Component {
 		super(props);
 		this.state = {
 			loading: true,
-			loadedFriendsList: false,
 		};
 	}
 

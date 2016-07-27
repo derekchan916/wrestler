@@ -19,6 +19,7 @@ class MainBar extends Component {
 		super(props);
 		this.state = {
 			selected: 'Profile',
+			loadMatchData: false,
 		}
 	}
 
@@ -29,7 +30,7 @@ class MainBar extends Component {
 
 	setSelectedTabCb(tab) {
 		this.setState({
-			selected: tab
+			selected: tab,
 		});
 	}
 
@@ -51,10 +52,16 @@ class MainBar extends Component {
 					/>
 				<MatchTab
 					selected={this.state.selected}
+					loadMatchData={this.state.loadMatchData}
 					setSelectedTabCb={(tab) => this.setSelectedTabCb(tab)}
+					onPress={() => this.onMatchTabPress()}
 					/>
 			</TabBarIOS>
 	    );
+	}
+
+	onMatchTabPress() {
+		this.setState({ loadMatchData: true });
 	}
 };
 
@@ -75,8 +82,8 @@ const styles = StyleSheet.create({
 });
 
 MainBar.propTypes = {
-	user             : React.PropTypes.object,
-	route            : React.PropTypes.object,
+	user  : React.PropTypes.object,
+	route : React.PropTypes.object,
 }
 
 export default connect (
